@@ -1,0 +1,19 @@
+---
+# defaults file for ansible-prometheus
+
+prometheus_install: true
+prometheus_node_exporter_install: true
+
+prometheus_owner: 'prometheus'
+prometheus_group: 'prometheus'
+
+prometheus_install_dir: '/usr/local/opt'
+prometheus_config_dir: '/etc/prometheus'
+prometheus_data_dir: '/var/lib/prometheus'
+
+# Prometheus
+prometheus_version: '1.1.0'
+prometheus_platform_architecture: 'linux-amd64'
+
+# Node exporter
+prometheus_node_exporter_version: '0.12.0'

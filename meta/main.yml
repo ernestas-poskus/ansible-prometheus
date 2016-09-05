@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Ernestas Poskus
+  description: Ansible playbook for managing Prometheus monitoring system
+  company: Linkosmos
+
+  license: BSD
+
+  min_ansible_version: 2.1
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - xenial
+
+  galaxy_tags:
+    - prometheus
+    - monitoring
+
+dependencies: []

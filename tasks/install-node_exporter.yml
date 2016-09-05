@@ -1,0 +1,18 @@
+- include_vars: 'nodeexporter.yml'
+
+- name: Download and extract Prometheus node exporter tarball
+  unarchive:
+    src: "{{ prometheus_node_exporter_tarball_url }}"
+    dest: "{{ prometheus_install_dir }}"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    copy: no
+    creates: "{{ prometheus_install_dir }}/{{ prometheus_node_exporter_archive }}"
+
+- name: Install Prometheus node exporter systemd service
+  template:
+    src: node_exporter.service.j2
+    dest: /etc/systemd/system/nodeexporter.service
+  notify:
+    - reload daemon
+    - restart nodeexporter

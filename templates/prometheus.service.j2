@@ -1,0 +1,20 @@
+# {{ansible_managed}}
+
+[Unit]
+Description=Prometheus service
+After=network.target
+Wants=network.target
+
+[Service]
+ExecStart={{ prometheus_install_dir }}/{{ prometheus_archive }}/prometheus {% for key, value in prometheus_service_config.iteritems() if value is not none %}-{{ key }}={{ value }} {% endfor %}
+
+Restart=always
+RestartSec=20
+TimeoutSec=300
+User=root
+Group=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

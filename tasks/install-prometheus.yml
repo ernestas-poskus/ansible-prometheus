@@ -1,0 +1,28 @@
+- include_vars: 'prometheus.yml'
+    
+- name: Download and extract Prometheus tarball
+  unarchive:
+    src: "{{ prometheus_tarball_url }}"
+    dest: "{{ prometheus_install_dir }}"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    copy: no
+    creates: "{{ prometheus_install_dir }}/{{ prometheus_archive }}"
+
+- name: Copy Prometheus config
+  template:
+    src: prometheus.yml.j2
+    dest: "{{ prometheus_config_dir }}/prometheus.yml"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    validate: "{{ prometheus_install_dir }}/{{ prometheus_archive }}/promtool check-config %s"
+  notify:
+    restart prometheus
+
+- name: Install Prometheus systemd service
+  template:
+    src: prometheus.service.j2
+    dest: /etc/systemd/system/prometheus.service
+  notify:
+    - reload daemon
+    - restart prometheus

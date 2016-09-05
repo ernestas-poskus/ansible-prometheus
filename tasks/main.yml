@@ -1,0 +1,42 @@
+---
+# tasks file for ansible-prometheus
+
+- name: Create Prometheus group
+  group:
+    name: "{{ prometheus_group }}"
+    state: present
+
+- name: Create Prometheus user
+  user:
+    name: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    createhome: no
+    shell: /sbin/nologin
+    state: present
+
+- name: "Create /usr/local/opt"
+  file:
+    path: "/usr/local/opt"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: 0750
+
+- name: "Creating mkdir {{ item }}"
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    mode: 0750
+  with_items:
+    - "{{ prometheus_config_dir }}"
+    - "{{ prometheus_data_dir }}"
+
+- name: Install Prometheus
+  include: install-prometheus.yml
+  when: prometheus_install
+
+- name: Install Prometheus node exporter
+  include: install-node_exporter.yml
+  when: prometheus_node_exporter_install

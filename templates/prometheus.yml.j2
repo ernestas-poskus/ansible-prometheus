@@ -1,0 +1,14 @@
+global:
+  scrape_interval: {{ prometheus_config_global_scrape_interval }}
+  evaluation_interval: {{ prometheus_config_global_evaluation_interval }}
+  scrape_timeout: {{ prometheus_config_global_scrape_timeout }}
+
+{% if prometheus_config_rule_files is not none %}
+rule_files:
+{{ prometheus_config_rule_files | to_nice_yaml }}
+{% endif %}
+
+{% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length > 0 %}
+scrape_configs:
+{{ prometheus_config_scrape_configs | to_nice_yaml }}
+{% endif %}
