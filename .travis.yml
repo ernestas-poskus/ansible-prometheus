@@ -45,6 +45,9 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
+  # Test role systemctl.
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/systemctl.yml'
+
   # Clean up.
   - 'sudo docker stop "$(cat ${container_id})"'
 
