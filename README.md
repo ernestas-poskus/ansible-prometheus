@@ -1,6 +1,8 @@
 ansible-prometheus
 =========
 
+[![Build Status](https://travis-ci.org/ernestas-poskus/ansible-prometheus.svg?branch=master)](https://travis-ci.org/ernestas-poskus/ansible-prometheus)
+
 Ansilbe playbook for installing Prometheus monitoring system.
 
 Playbook installs and manages services using systemd. Currently supported:
