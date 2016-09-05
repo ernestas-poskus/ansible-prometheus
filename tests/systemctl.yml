@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  remote_user: root
+  sudo: yes
+  tasks:
+    - name: Check if Prometheus service is enabled
+      command: systemctl is-enabled prometheus
+      register: command_result
+      failed_when: "'disabled' in command_result.stdout"
+
+    - name: Check if node exporter service is enabled
+      command: systemctl is-enabled nodeexporter
+      register: command_result
+      failed_when: "'disabled' in command_result.stdout"
+
+    - shell: "systemctl status prometheus | grep -i running"
+      register: status
+      failed_when: status.rc != 0
+
+    - shell: "systemctl status nodeexporter | grep -i running"
+      register: status
+      failed_when: status.rc != 0
