@@ -13,6 +13,11 @@ Playbook includes extensive configuration options in:
  - vars/prometheus.yml
  - vars/nodeexporter.yml
 
+Installation
+------------
+
+ansible-galaxy install ernestas-poskus.ansible-prometheus
+
 Requirements
 ------------
 
