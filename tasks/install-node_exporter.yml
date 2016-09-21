@@ -1,5 +1,3 @@
-- include_vars: 'nodeexporter.yml'
-
 - name: Download and extract Prometheus node exporter tarball
   unarchive:
     src: "{{ prometheus_node_exporter_tarball_url }}"

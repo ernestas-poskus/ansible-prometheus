@@ -1,0 +1,20 @@
+# {{ansible_managed}}
+
+[Unit]
+Description=Prometheus alert manager service
+After=network.target
+Wants=network.target
+
+[Service]
+ExecStart={{ prometheus_install_dir }}/{{ prometheus_alert_manager_archive }}/alertmanager {% for key, value in prometheus_alert_manager_service_config.iteritems() if value is not none %}-{{ key }}={{ value }} {% endfor %}
+
+Restart=always
+RestartSec=20
+TimeoutSec=300
+User=root
+Group=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

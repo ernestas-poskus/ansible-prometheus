@@ -1,0 +1,23 @@
+{% if prometheus_alert_manager_config_global is not none %}
+{{ {'global': prometheus_alert_manager_config_global } | to_nice_yaml }}
+{% endif %}
+
+# The directory from which notification templates are read.
+{{ {'templates': prometheus_alert_manager_config_templates} | to_nice_yaml }}
+
+{% if prometheus_alert_manager_config_route is not none %}
+# The root route on which each incoming alert enters.
+{{ {'route': prometheus_alert_manager_config_route} | to_nice_yaml }}
+{% endif %}
+
+{% if prometheus_alert_manager_config_inhibit_rules is not none %}
+# Inhibition rules allow to mute a set of alerts given that another alert is
+# firing.
+# We use this to mute any warning-level notifications if the same alert is
+# already critical.
+{{ {'inhibit_rules': prometheus_alert_manager_config_inhibit_rules} | to_nice_yaml }}
+{% endif %}
+
+{% if prometheus_alert_manager_config_receivers is not none %}
+{{ {'receivers': prometheus_alert_manager_config_receivers} | to_nice_yaml }}
+{% endif %}
