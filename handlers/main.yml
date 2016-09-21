@@ -21,3 +21,12 @@
 
 - name: start nodeexporter
   service: name=nodeexporter state=started
+
+- name: restart alertmanager
+  service: name=alertmanager state=restarted enabled=yes
+
+- name: stop alertmanager
+  service: name=alertmanager state=stopped
+
+- name: start alertmanager
+  service: name=alertmanager state=started

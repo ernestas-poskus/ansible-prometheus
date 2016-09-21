@@ -1,5 +1,8 @@
 ---
 # tasks file for ansible-prometheus
+- include_vars: 'nodeexporter.yml'
+- include_vars: 'prometheus.yml'
+- include_vars: 'alertmanager.yml'
 
 - name: Create Prometheus group
   group:
@@ -32,6 +35,10 @@
   with_items:
     - "{{ prometheus_config_dir }}"
     - "{{ prometheus_data_dir }}"
+    - "{{ prometheus_lib_dir }}"
+    - "{{ prometheus_alert_manager_data_dir }}"
+    - "{{ prometheus_alert_manager_config_dir }}"
+    - "{{ prometheus_alert_manager_templates_dir }}"
 
 - name: Install Prometheus
   include: install-prometheus.yml
@@ -40,3 +47,7 @@
 - name: Install Prometheus node exporter
   include: install-node_exporter.yml
   when: prometheus_node_exporter_install
+
+- name: Install Prometheus alert manager
+  include: install-alert_manager.yml
+  when: prometheus_alert_manager_install

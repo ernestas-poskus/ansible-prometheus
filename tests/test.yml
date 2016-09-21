@@ -13,10 +13,19 @@
       register: command_result
       failed_when: "'disabled' in command_result.stdout"
 
+    - name: Check if alert manager service is enabled
+      command: systemctl is-enabled alertmanager
+      register: command_result
+      failed_when: "'disabled' in command_result.stdout"
+
     - shell: "systemctl status prometheus | grep -i running"
       register: status
       failed_when: status.rc != 0
 
     - shell: "systemctl status nodeexporter | grep -i running"
+      register: status
+      failed_when: status.rc != 0
+
+    - shell: "systemctl status alertmanager | grep -i running"
       register: status
       failed_when: status.rc != 0

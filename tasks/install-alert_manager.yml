@@ -1,0 +1,25 @@
+- name: Download and extract Prometheus alertmanager tarball
+  unarchive:
+    src: "{{ prometheus_alert_manager_tarball_url }}"
+    dest: "{{ prometheus_install_dir }}"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    copy: no
+    creates: "{{ prometheus_install_dir }}/{{ prometheus_alert_manager_archive }}"
+
+- name: Copy alert manager config
+  template:
+    src: alertmanager.yml.j2
+    dest: "{{ prometheus_alert_manager_config_dir }}/alertmanager.yml"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+  notify:
+    restart alertmanager
+
+- name: Install Prometheus alert manager systemd service
+  template:
+    src: alert_manager.service.j2
+    dest: /etc/systemd/system/alertmanager.service
+  notify:
+    - reload daemon
+    - restart alertmanager

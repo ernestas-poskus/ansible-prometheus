@@ -1,5 +1,3 @@
-- include_vars: 'prometheus.yml'
-    
 - name: Download and extract Prometheus tarball
   unarchive:
     src: "{{ prometheus_tarball_url }}"
