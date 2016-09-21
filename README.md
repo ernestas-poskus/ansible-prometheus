@@ -204,44 +204,46 @@ web__telemetry_path: "/metrics"
 # Path under which to expose metrics.
 web__user_assets:
 # Path to static asset directory, available at /user.
+```
 
-# vars/nodeexporter.yml
+> vars/nodeexporter.yml
+```yaml
 # Node exporter
 # https://github.com/prometheus/node_exporter
 
-collector__diskstats__ignored_devices:
-# Regexp of devices to ignore for diskstats__ (default "^(ram|loop|fd|(h|s|v|xv)d[a_z])\d+$")
-collector__filesystem__ignored_mount_points:
-# Regexp of mount points to ignore for filesystem collector__ (default "^/(sys|proc|dev)($|/)")
-collector__megacli__command:
-# Command to run megacli__ (default "megacli")
-collector__netdev__ignored_devices:
-# Regexp of net devices to ignore for netdev collector__ (default "^$")
-collector__ntp__protocol_version:
+prometheus_collector__diskstats__ignored_devices:
+# Regexp of devices to ignore for diskstats. (default "^(ram|loop|fd|(h|s|v|xv)d[a_z])\d+$")
+prometheus_collector__filesystem__ignored_mount_points:
+# Regexp of mount points to ignore for filesystem. (default "^/(sys|proc|dev)($|/)")
+prometheus_collector__megacli__command:
+# Command to run megacli. (default "megacli")
+prometheus_collector__netdev__ignored_devices:
+# Regexp of net devices to ignore for netdev. (default "^$")
+prometheus_collector__ntp__protocol_version:
 # NTP protocol version (default 4)
-collector__ntp__server:
-# NTP server to use for ntp collector__
-collector__procfs:
-# procfs mountpoint__ (default "/proc")
-collector__supervisord__url:
+prometheus_collector__ntp__server:
+# NTP server to use for ntp.
+prometheus_collector__procfs:
+# procfs mountpoint. (default "/proc")
+prometheus_collector__supervisord__url:
 # XML RPC endpoint (default "http://localhost:9001/RPC2")
-collector__sysfs:
-# sysfs mountpoint__ (default "/sys")
-collector__systemd__private:
-# Establish a private, direct connection to systemd without dbus__
-collector__textfile__directory:
-# Directory to read text files with metrics from__
-collectors__enabled:
-# Comma_separated list of collectors to use__ (default "conntrack,diskstats,entropy,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,sockstat,stat,textfile,time,uname,vmstat")
-collectors__print:
-# If true, print available collectors and exit__
-log__format:
-# If set use a syslog logger or JSON logging__ Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true__ Defaults to stderr__
-log__level: 'info'
-# Only log messages with the given severity or above__ Valid levels: [debug, info, warn, error, fatal]__ (default info)
-web__listen_address: ':9100'
-# Address on which to expose metrics and web interface__ (default ":9100")
-web__telemetry_path: '/metrics'
+prometheus_collector__sysfs:
+# sysfs mountpoint. (default "/sys")
+prometheus_collector__systemd__private:
+# Establish a private, direct connection to systemd without dbus.
+prometheus_collector__textfile__directory:
+# Directory to read text files with metrics from.
+prometheus_collector__enabled:
+# Comma_separated list of collector to use. (default "conntrack,diskstats,entropy,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,sockstat,stat,textfile,time,uname,vmstat")
+prometheus_collector__print:
+# If true, print available collector and exit.
+prometheus_collector__log__format:
+# If set use a syslog logger or JSON logging. Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
+prometheus_collector__log__level: 'info'
+# Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]. (default info)
+prometheus_collector__web__listen_address: ':9100'
+# Address on which to expose metrics and web interface. (default ":9100")
+prometheus_collector__web__telemetry_path: '/metrics'
 # Path under which to expose metrics. (default "/metrics")
 ```
 
