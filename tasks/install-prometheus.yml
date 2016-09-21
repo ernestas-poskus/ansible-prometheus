@@ -17,6 +17,18 @@
   notify:
     restart prometheus
 
+- name: "Making Prometheus rules file {{ item.name }}"
+  copy:
+    content: "{{ item.content | regex_replace('\\[\\[', '{{') | regex_replace('\\]\\]', '}}') }}"
+    dest: "{{ prometheus_rules_dir }}/{{ item.name }}.rules"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    validate: "{{ prometheus_install_dir }}/{{ prometheus_archive }}/promtool check-rules %s"
+  with_items: "{{ prometheus_rules }}"
+  when: prometheus_rules | length > 0
+  notify:
+    restart prometheus
+
 - name: Install Prometheus systemd service
   template:
     src: prometheus.service.j2

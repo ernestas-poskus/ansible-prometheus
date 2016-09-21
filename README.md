@@ -55,8 +55,11 @@ prometheus_node_exporter_version: '0.12.0'
 
 # Alert manager
 prometheus_alert_manager_version: '0.4.2'
+```
 
-# vars/prometheus.yml
+> vars/prometheus.yml
+
+```yaml
 # Prometheus
 # https://prometheus.io/docs/operating/configuration/
 
@@ -66,6 +69,22 @@ prometheus_config_global_scrape_timeout: '10s'
 prometheus_config_global_external_labels:
 prometheus_config_global_external_rules:
 prometheus_config_rule_files:
+  - "{{ prometheus_rules_dir }}/*.rules"
+
+# Prometheus alert manager rules
+# since Ansible uses double curly braces as well as Prometheus
+# variable interpolation use square brackets, those will be replaced
+# by curly braces in task
+prometheus_rules:
+  - name: instancedown
+    content: |
+      ALERT InstanceDown
+        IF up == 0
+        FOR 10s
+        ANNOTATIONS {
+          summary = "Instance [[ $labels.instance ]] down",
+          description = "[[ $labels.instance ]] of job [[ $labels.job ]] has been down for more than 10 seconds.",
+        }
 
 prometheus_config_scrape_configs:
   - job_name: 'prometheus'
