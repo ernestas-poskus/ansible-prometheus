@@ -1,14 +1,17 @@
-global:
-  scrape_interval: {{ prometheus_config_global_scrape_interval }}
-  evaluation_interval: {{ prometheus_config_global_evaluation_interval }}
-  scrape_timeout: {{ prometheus_config_global_scrape_timeout }}
+{{
+{
+'global': {
+  'scrape_interval': prometheus_config_global_scrape_interval,
+  'evaluation_interval': prometheus_config_global_evaluation_interval,
+  'scrape_timeout': prometheus_config_global_scrape_timeout,
+  'external_labels': prometheus_config_global_external_labels }
+} | to_nice_yaml
+}}
 
 {% if prometheus_config_rule_files is not none %}
-rule_files:
-{{ prometheus_config_rule_files | to_nice_yaml }}
+{{ {'rule_files': prometheus_config_rule_files} | to_nice_yaml }}
 {% endif %}
 
 {% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length > 0 %}
-scrape_configs:
-{{ prometheus_config_scrape_configs | to_nice_yaml }}
+{{ {'scrape_configs': prometheus_config_scrape_configs} | to_nice_yaml }}
 {% endif %}
