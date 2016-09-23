@@ -8,10 +8,12 @@ Ansilbe playbook for installing Prometheus monitoring system.
 Playbook installs and manages services using systemd. Currently supported:
   - Prometheus
   - Node Exporter (collects metrics of host machine)
+  - Alert manager
 
 Playbook includes extensive configuration options in:
  - vars/prometheus.yml
  - vars/nodeexporter.yml
+ - vars/alertmanager.yml
 
 Installation
 ------------
@@ -67,14 +69,13 @@ prometheus_config_global_scrape_interval: '15s'
 prometheus_config_global_evaluation_interval: '30s'
 prometheus_config_global_scrape_timeout: '10s'
 prometheus_config_global_external_labels:
-prometheus_config_global_external_rules:
 prometheus_config_rule_files:
   - "{{ prometheus_rules_dir }}/*.rules"
 
 # Prometheus alert manager rules
-# since Ansible uses double curly braces as well as Prometheus
-# variable interpolation use square brackets, those will be replaced
-# by curly braces in task
+# since Ansible uses double curly braces as well as Prometheus for
+# variable interpolation in alerts use square brackets, those will be 
+# replaced by curly braces in task
 prometheus_rules:
   - name: instancedown
     content: |
