@@ -10,10 +10,7 @@ Playbook installs and manages services using systemd. Currently supported:
   - Node Exporter (collects metrics of host machine)
   - Alert manager
 
-Playbook includes extensive configuration options in:
- - vars/prometheus.yml
- - vars/nodeexporter.yml
- - vars/alertmanager.yml
+Playbook includes extensive configuration options check default/main.yml
 
 Installation
 ------------
@@ -42,6 +39,7 @@ prometheus_group: 'prometheus'
 prometheus_install_dir: '/usr/local/opt'
 prometheus_config_dir: '/etc/prometheus'
 prometheus_lib_dir: '/var/lib/prometheus'
+prometheus_rules_dir: "{{ prometheus_config_dir }}/rules"
 
 prometheus_data_dir: "{{ prometheus_lib_dir }}/prometheus"
 prometheus_alert_manager_data_dir: "{{ prometheus_lib_dir }}/alertmanager"
@@ -49,7 +47,7 @@ prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
 
 # Prometheus
-prometheus_version: '1.1.0'
+prometheus_version: '1.1.3'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
@@ -57,11 +55,7 @@ prometheus_node_exporter_version: '0.12.0'
 
 # Alert manager
 prometheus_alert_manager_version: '0.4.2'
-```
 
-> vars/prometheus.yml
-
-```yaml
 # Prometheus
 # https://prometheus.io/docs/operating/configuration/
 
@@ -237,57 +231,6 @@ prometheus_web__telemetry_path: "/metrics"
 prometheus_web__user_assets:
 # Path to static asset directory, available at /user.
 
-############################################################
-# Auto generated
-############################################################
-prometheus_service_config:
-  config.file: "{{ prometheus_config_dir }}/prometheus.yml"
-  alertmanager.notification-queue-capacity: "{{ prometheus_alertmanager__notification_queue_capacity }}"
-  alertmanager.timeout: "{{ prometheus_alertmanager__timeout }}"
-  alertmanager.url: "{{ prometheus_alertmanager__url }}"
-  log.format: "{{ prometheus_log__format }}"
-  log.level: "{{ prometheus_log__level }}"
-  query.max-concurrency: "{{ prometheus_query__max_concurrency }}"
-  query.staleness-delta: "{{ prometheus_query__staleness_delta }}"
-  query.timeout: "{{ prometheus_query__timeout }}"
-  storage.local.checkpoint-dirty-series-limit: "{{ prometheus_storage__local__checkpoint_dirty_series_limit }}"
-  storage.local.checkpoint-interval: "{{ prometheus_storage__local__checkpoint_interval }}"
-  storage.local.chunk-encoding-version: "{{ prometheus_storage__local__chunk_encoding_version }}"
-  storage.local.dirty: "{{ prometheus_storage__local__dirty }}"
-  storage.local.index-cache-size.fingerprint-to-metric: "{{ prometheus_storage__local__index_cache_size__fingerprint_to_metric }}"
-  storage.local.index-cache-size.fingerprint-to-timerange: "{{ prometheus_storage__local__index_cache_size__fingerprint_to_timerange }}"
-  storage.local.index-cache-size.label-name-to-label-values: "{{ prometheus_storage__local__index_cache_size__label_name_to_label_values }}"
-  storage.local.index-cache-size.label-pair-to-fingerprints: "{{ prometheus_storage__local__index_cache_size__label_pair_to_fingerprints }}"
-  storage.local.max-chunks-to-persist: "{{ prometheus_storage__local__max_chunks_to_persist }}"
-  storage.local.memory-chunks: "{{ prometheus_storage__local__memory_chunks }}"
-  storage.local.num-fingerprint-mutexes: "{{ prometheus_storage__local__num_fingerprint_mutexes }}"
-  storage.local.path: "{{ prometheus_storage__local__path }}"
-  storage.local.pedantic-checks: "{{ prometheus_storage__local__pedantic_checks }}"
-  storage.local.retention: "{{ prometheus_storage__local__retention }}"
-  storage.local.series-file-shrink-ratio: "{{ prometheus_storage__local__series_file_shrink_ratio }}"
-  storage.local.series-sync-strategy: "{{ prometheus_storage__local__series_sync_strategy }}"
-  storage.remote.graphite-address: "{{ prometheus_storage__remote__graphite_address }}"
-  storage.remote.graphite-prefix: "{{ prometheus_storage__remote__graphite_prefix }}"
-  storage.remote.graphite-transport: "{{ prometheus_storage__remote__graphite_transport }}"
-  storage.remote.influxdb-url: "{{ prometheus_storage__remote__influxdb_url }}"
-  storage.remote.influxdb.database: "{{ prometheus_storage__remote__influxdb__database }}"
-  storage.remote.influxdb.retention-policy: "{{ prometheus_storage__remote__influxdb__retention_policy }}"
-  storage.remote.influxdb.username: "{{ prometheus_storage__remote__influxdb__username }}"
-  storage.remote.opentsdb-url: "{{ prometheus_storage__remote__opentsdb_url }}"
-  storage.remote.timeout: "{{ prometheus_storage__remote__timeout }}"
-  web.console.libraries: "{{ prometheus_web__console__libraries }}"
-  web.console.templates: "{{ prometheus_web__console__templates }}"
-  web.enable-remote-shutdown: "{{ prometheus_web__enable_remote_shutdown }}"
-  web.external-url: "{{ prometheus_web__external_url }}"
-  web.listen-address: "{{ prometheus_web__listen_address }}"
-  web.route-prefix: "{{ prometheus_web__route_prefix }}"
-  web.telemetry-path: "{{ prometheus_web__telemetry_path }}"
-  web.user-assets: "{{ prometheus_web__user_assets }}"
-```
-
-> vars/nodeexporter.yml
-
-```yaml
 # Node exporter
 # https://github.com/prometheus/node_exporter
 
@@ -325,11 +268,7 @@ prometheus_collector__web__listen_address: ':9100'
 # Address on which to expose metrics and web interface. (default ":9100")
 prometheus_collector__web__telemetry_path: '/metrics'
 # Path under which to expose metrics. (default "/metrics")
-```
 
-> vars/alertmanager.yml
-
-```yaml
 # Alertmanager
 # https://github.com/prometheus/alertmanager
 
@@ -386,6 +325,7 @@ prometheus_alert_manager_web__external_url:
 # If omitted, relevant URL components will be derived automatically.
 prometheus_alert_manager_web__listen_address: ':9093'
 # Address to listen on for the web:erface and API. (default ":9093")
+
 ```
 
 Dependencies
