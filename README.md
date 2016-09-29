@@ -107,31 +107,31 @@ prometheus_config_scrape_configs:
   #     - 'http://localhost.com:8080'
 
 # == ALERT MANAGER ==
-alertmanager__notification_queue_capacity: 10000
+prometheus_alertmanager__notification_queue_capacity: 10000
 # The capacity of the queue for pending alert manager notifications.
-alertmanager__timeout: '10s'
+prometheus_alertmanager__timeout: '10s'
 # Alert manager HTTP API timeout.
-alertmanager__url:
+prometheus_alertmanager__url:
 # Comma_separated list of Alertmanager URLs to send notifications to.
 
 # == LOG ==
-log__format:
+prometheus_log__format:
 # If set use a syslog logger or JSON logging. Example:
 # logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
-log__level: "info"
+prometheus_log__level: "info"
 # Only log messages with the given severity or above. Valid levels:
 # [debug, info, warn, error, fatal].
 
 # == QUERY ==
-query__max_concurrency: 20
+prometheus_query__max_concurrency: 20
 # Maximum number of queries executed concurrently.
-query__staleness_delta: '5m0s'
+prometheus_query__staleness_delta: '5m0s'
 # Staleness delta allowance during expression evaluations.
-query__timeout: '2m0s'
+prometheus_query__timeout: '2m0s'
 # Maximum time a query may take before being aborted.
 
 # == STORAGE ==
-storage__local__checkpoint_dirty_series_limit: 5000
+prometheus_storage__local__checkpoint_dirty_series_limit: 5000
 # If approx. that many time series are in a state that would require
 # a recovery operation after a crash, a checkpoint is triggered, even if
 # the checkpoint interval hasn't passed yet. A recovery operation requires
@@ -139,103 +139,150 @@ storage__local__checkpoint_dirty_series_limit: 5000
 # 1min even on spinning disks. With SSD, recovery is much faster, so you
 # might want to increase this value in that case to avoid overly frequent
 # checkpoints.
-storage__local__checkpoint_interval: '5m0s'
+prometheus_storage__local__checkpoint_interval: '5m0s'
 # The period at which the in_memory metrics and the chunks not yet
 # persisted to series files are checkpointed.
-storage__local__chunk_encoding_version: 1
+prometheus_storage__local__chunk_encoding_version: 1
 # Which chunk encoding version to use for newly created chunks.
 # Currently supported is 0 (delta encoding), 1 (double_delta encoding), and
 # 2 (double_delta encoding with variable bit_width).
-storage__local__dirty: false
+prometheus_storage__local__dirty: false
 # If set, the local storage layer will perform crash recovery even if
 # the last shutdown appears to be clean.
-storage__local__index_cache_size__fingerprint_to_metric: 10485760
+prometheus_storage__local__index_cache_size__fingerprint_to_metric: 10485760
 # The size in bytes for the fingerprint to metric index cache.
-storage__local__index_cache_size__fingerprint_to_timerange: 5242880
+prometheus_storage__local__index_cache_size__fingerprint_to_timerange: 5242880
 # The size in bytes for the metric time range index cache.
-storage__local__index_cache_size__label_name_to_label_values: 10485760
+prometheus_storage__local__index_cache_size__label_name_to_label_values: 10485760
 # The size in bytes for the label name to label values index cache.
-storage__local__index_cache_size__label_pair_to_fingerprints: 20971520
+prometheus_storage__local__index_cache_size__label_pair_to_fingerprints: 20971520
 # The size in bytes for the label pair to fingerprints index cache.
-storage__local__max_chunks_to_persist: 524288
+prometheus_storage__local__max_chunks_to_persist: 524288
 # How many chunks can be waiting for persistence before sample
 # ingestion will be throttled. Many chunks waiting to be persisted will
 # increase the checkpoint size.
-storage__local__memory_chunks: 1048576
+prometheus_storage__local__memory_chunks: 1048576
 # How many chunks to keep in memory. While the size of a chunk is
 # 1kiB, the total memory usage will be significantly higher than this value
 # * 1kiB. Furthermore, for various reasons, more chunks might have to be
 # kept in memory temporarily. Sample ingestion will be throttled if the
 # configured value is exceeded by more than 10%.
-storage__local__num_fingerprint_mutexes: 4096
+prometheus_storage__local__num_fingerprint_mutexes: 4096
 # The number of mutexes used for fingerprint locking.
-storage__local__path: "{{ prometheus_data_dir }}"
+prometheus_storage__local__path: "{{ prometheus_data_dir }}"
 # Base path for metrics storage.
-storage__local__pedantic_checks: false
+prometheus_storage__local__pedantic_checks: false
 # If set, a crash recovery will perform checks on each series file.
 # This might take a very long time.
-storage__local__retention: '360h0m0s'
+prometheus_storage__local__retention: '360h0m0s'
 # How long to retain samples in the local storage.
-storage__local__series_file_shrink_ratio: 0.1
+prometheus_storage__local__series_file_shrink_ratio: 0.1
 # A series file is only truncated (to delete samples that have
 # exceeded the retention period) if it shrinks by at least the provided
 # ratio. This saves I/O operations while causing only a limited storage
 # space overhead. If 0 or smaller, truncation will be performed even for a
 # single dropped chunk, while 1 or larger will effectively prevent any
 # truncation.
-storage__local__series_sync_strategy: "adaptive"
+prometheus_storage__local__series_sync_strategy: "adaptive"
 # When to sync series files after modification. Possible values:
 # 'never', 'always', 'adaptive'. Sync'ing slows down storage performance
 # but reduces the risk of data loss in case of an OS crash. With the
 # 'adaptive' strategy, series files are sync'd for as long as the storage
 # is not too much behind on chunk persistence.
-storage__remote__graphite_address:
+prometheus_storage__remote__graphite_address:
 # The host:port of the remote Graphite server to send samples to.
 # None, if empty.
-storage__remote__graphite_prefix:
+prometheus_storage__remote__graphite_prefix:
 # The prefix to prepend to all metrics exported to Graphite. None, if
 # empty.
-storage__remote__graphite_transport: "tcp"
+prometheus_storage__remote__graphite_transport: "tcp"
 # Transport protocol to use to communicate with Graphite. 'tcp', if
 # empty.
-storage__remote__influxdb_url:
+prometheus_storage__remote__influxdb_url:
 # The URL of the remote InfluxDB server to send samples to. None, if
 # empty.
-storage__remote__influxdb__database: "prometheus"
+prometheus_storage__remote__influxdb__database: "prometheus"
 # The name of the database to use for storing samples in InfluxDB.
-storage__remote__influxdb__retention_policy: "default"
+prometheus_storage__remote__influxdb__retention_policy: "default"
 # The InfluxDB retention policy to use.
-storage__remote__influxdb__username:
+prometheus_storage__remote__influxdb__username:
 # The username to use when sending samples to InfluxDB. The
 # corresponding password must be provided via the INFLUXDB_PW environment variable.
-storage__remote__opentsdb_url:
+prometheus_storage__remote__opentsdb_url:
 # The URL of the remote OpenTSDB server to send samples to. None, if  empty.
-storage__remote__timeout: '30s'
+prometheus_storage__remote__timeout: '30s'
 # The timeout to use when sending samples to the remote storage.
 
 # == WEB ==
-web__console__libraries: "console_libraries"
+prometheus_web__console__libraries: "console_libraries"
 # Path to the console library directory.
-web__console__templates: "consoles"
+prometheus_web__console__templates: "consoles"
 # Path to the console template directory, available at /consoles.
-web__enable_remote_shutdown: false
+prometheus_web__enable_remote_shutdown: false
 # Enable remote service shutdown.
-web__external_url:
+prometheus_web__external_url:
 # The URL under which Prometheus is externally reachable (for
 # example, if Prometheus is served via a reverse proxy). Used for
 # generating relative and absolute links back to Prometheus itself. If the
 # URL has a path portion, it will be used to prefix all HTTP endpoints
 # served by Prometheus. If omitted, relevant URL components will be derived
 # automatically.
-web__listen_address: ":9090"
+prometheus_web__listen_address: ":9090"
 # Address to listen on for the web interface, API, and telemetry.
-web__route_prefix:
+prometheus_web__route_prefix:
 # Prefix for the internal routes of web endpoints. Defaults to path
 # of .web.external.url.
-web__telemetry_path: "/metrics"
+prometheus_web__telemetry_path: "/metrics"
 # Path under which to expose metrics.
-web__user_assets:
+prometheus_web__user_assets:
 # Path to static asset directory, available at /user.
+
+############################################################
+# Auto generated
+############################################################
+prometheus_service_config:
+  config.file: "{{ prometheus_config_dir }}/prometheus.yml"
+  alertmanager.notification-queue-capacity: "{{ prometheus_alertmanager__notification_queue_capacity }}"
+  alertmanager.timeout: "{{ prometheus_alertmanager__timeout }}"
+  alertmanager.url: "{{ prometheus_alertmanager__url }}"
+  log.format: "{{ prometheus_log__format }}"
+  log.level: "{{ prometheus_log__level }}"
+  query.max-concurrency: "{{ prometheus_query__max_concurrency }}"
+  query.staleness-delta: "{{ prometheus_query__staleness_delta }}"
+  query.timeout: "{{ prometheus_query__timeout }}"
+  storage.local.checkpoint-dirty-series-limit: "{{ prometheus_storage__local__checkpoint_dirty_series_limit }}"
+  storage.local.checkpoint-interval: "{{ prometheus_storage__local__checkpoint_interval }}"
+  storage.local.chunk-encoding-version: "{{ prometheus_storage__local__chunk_encoding_version }}"
+  storage.local.dirty: "{{ prometheus_storage__local__dirty }}"
+  storage.local.index-cache-size.fingerprint-to-metric: "{{ prometheus_storage__local__index_cache_size__fingerprint_to_metric }}"
+  storage.local.index-cache-size.fingerprint-to-timerange: "{{ prometheus_storage__local__index_cache_size__fingerprint_to_timerange }}"
+  storage.local.index-cache-size.label-name-to-label-values: "{{ prometheus_storage__local__index_cache_size__label_name_to_label_values }}"
+  storage.local.index-cache-size.label-pair-to-fingerprints: "{{ prometheus_storage__local__index_cache_size__label_pair_to_fingerprints }}"
+  storage.local.max-chunks-to-persist: "{{ prometheus_storage__local__max_chunks_to_persist }}"
+  storage.local.memory-chunks: "{{ prometheus_storage__local__memory_chunks }}"
+  storage.local.num-fingerprint-mutexes: "{{ prometheus_storage__local__num_fingerprint_mutexes }}"
+  storage.local.path: "{{ prometheus_storage__local__path }}"
+  storage.local.pedantic-checks: "{{ prometheus_storage__local__pedantic_checks }}"
+  storage.local.retention: "{{ prometheus_storage__local__retention }}"
+  storage.local.series-file-shrink-ratio: "{{ prometheus_storage__local__series_file_shrink_ratio }}"
+  storage.local.series-sync-strategy: "{{ prometheus_storage__local__series_sync_strategy }}"
+  storage.remote.graphite-address: "{{ prometheus_storage__remote__graphite_address }}"
+  storage.remote.graphite-prefix: "{{ prometheus_storage__remote__graphite_prefix }}"
+  storage.remote.graphite-transport: "{{ prometheus_storage__remote__graphite_transport }}"
+  storage.remote.influxdb-url: "{{ prometheus_storage__remote__influxdb_url }}"
+  storage.remote.influxdb.database: "{{ prometheus_storage__remote__influxdb__database }}"
+  storage.remote.influxdb.retention-policy: "{{ prometheus_storage__remote__influxdb__retention_policy }}"
+  storage.remote.influxdb.username: "{{ prometheus_storage__remote__influxdb__username }}"
+  storage.remote.opentsdb-url: "{{ prometheus_storage__remote__opentsdb_url }}"
+  storage.remote.timeout: "{{ prometheus_storage__remote__timeout }}"
+  web.console.libraries: "{{ prometheus_web__console__libraries }}"
+  web.console.templates: "{{ prometheus_web__console__templates }}"
+  web.enable-remote-shutdown: "{{ prometheus_web__enable_remote_shutdown }}"
+  web.external-url: "{{ prometheus_web__external_url }}"
+  web.listen-address: "{{ prometheus_web__listen_address }}"
+  web.route-prefix: "{{ prometheus_web__route_prefix }}"
+  web.telemetry-path: "{{ prometheus_web__telemetry_path }}"
+  web.user-assets: "{{ prometheus_web__user_assets }}"
 ```
 
 > vars/nodeexporter.yml
