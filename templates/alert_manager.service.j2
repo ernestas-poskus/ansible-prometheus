@@ -11,8 +11,8 @@ ExecStart={{ prometheus_install_dir }}/{{ prometheus_alert_manager_archive }}/al
 Restart=always
 RestartSec=20
 TimeoutSec=300
-User=root
-Group=root
+User={{prometheus_owner}}
+Group={{prometheus_group}}
 StandardOutput=journal
 StandardError=journal
 
