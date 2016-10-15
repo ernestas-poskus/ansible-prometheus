@@ -15,6 +15,7 @@ prometheus_service_config:
   storage.local.checkpoint-interval: "{{ prometheus_storage__local__checkpoint_interval }}"
   storage.local.chunk-encoding-version: "{{ prometheus_storage__local__chunk_encoding_version }}"
   storage.local.dirty: "{{ prometheus_storage__local__dirty }}"
+  storage.local.engine: "{{ prometheus_storage__local__engine }}"
   storage.local.index-cache-size.fingerprint-to-metric: "{{ prometheus_storage__local__index_cache_size__fingerprint_to_metric }}"
   storage.local.index-cache-size.fingerprint-to-timerange: "{{ prometheus_storage__local__index_cache_size__fingerprint_to_timerange }}"
   storage.local.index-cache-size.label-name-to-label-values: "{{ prometheus_storage__local__index_cache_size__label_name_to_label_values }}"
