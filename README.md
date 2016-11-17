@@ -143,6 +143,9 @@ prometheus_storage__local__chunk_encoding_version: 1
 prometheus_storage__local__dirty: false
 # If set, the local storage layer will perform crash recovery even if
 # the last shutdown appears to be clean.
+prometheus_storage__local__engine: "persisted"
+# Local storage engine. Supported values are: 'persisted' (full local
+# storage with on-disk persistence) and 'none' (no local storage).
 prometheus_storage__local__index_cache_size__fingerprint_to_metric: 10485760
 # The size in bytes for the fingerprint to metric index cache.
 prometheus_storage__local__index_cache_size__fingerprint_to_timerange: 5242880

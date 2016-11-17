@@ -19,7 +19,7 @@ prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
 
 # Prometheus
-prometheus_version: '1.1.3'
+prometheus_version: '1.3.1'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
@@ -115,6 +115,9 @@ prometheus_storage__local__chunk_encoding_version: 1
 prometheus_storage__local__dirty: false
 # If set, the local storage layer will perform crash recovery even if
 # the last shutdown appears to be clean.
+prometheus_storage__local__engine: "persisted"
+# Local storage engine. Supported values are: 'persisted' (full local
+# storage with on-disk persistence) and 'none' (no local storage).
 prometheus_storage__local__index_cache_size__fingerprint_to_metric: 10485760
 # The size in bytes for the fingerprint to metric index cache.
 prometheus_storage__local__index_cache_size__fingerprint_to_timerange: 5242880
