@@ -312,19 +312,29 @@ prometheus_alert_manager_config_receivers:
 
 prometheus_alert_manager_config__file: "{{ prometheus_alert_manager_config_dir }}/alertmanager.yml"
 # Alertmanager configuration file name. (default "alertmanager.yml")
-prometheus_alert_manager_dev:
-# serve live instead of embedded assets
+prometheus_alert_manager_data__retention: '120h0m0s'
+# How long to keep data for. (default 120h0m0s)
 prometheus_alert_manager_log__format:
 # If set use a syslog logger or JSON logging. Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
 prometheus_alert_manager_log__level: 'info'
 # Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]. (default info)
+prometheus_alert_manager_mesh__hardware_address:
+# MAC address, i.e. mesh peer ID (default "ca:ca:ce:ca:ca:ee")
+prometheus_alert_manager_mesh__listen_address: '0.0.0.0:6783'
+# mesh listen address (default "0.0.0.0:6783")
+prometheus_alert_manager_mesh__nickname:
+# peer nickname (default "$HOSTNAME")
+prometheus_alert_manager_mesh__password:
+# password to join the peer network (empty password disables encryption)
+prometheus_alert_manager_mesh__peer:
+# initial peers (may be repeated)
 prometheus_alert_manager_storage__path: "{{ prometheus_alert_manager_data_dir }}"
 # Base path for data storage. (default "data/")
 prometheus_alert_manager_web__external_url:
 # The URL under which Alertmanager is externally reachable
 # (for example, if Alertmanager is served via a reverse proxy).
 # Used for generating relative and absolute links back to Alertmanager itself.
-# If the URL has a path portion, it will be used to prefix all HTTP endpoints served by Alertmanager. 
+# If the URL has a path portion, it will be used to prefix all HTTP endpoints served by Alertmanager.
 # If omitted, relevant URL components will be derived automatically.
 prometheus_alert_manager_web__listen_address: ':9093'
 # Address to listen on for the web:erface and API. (default ":9093")
