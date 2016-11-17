@@ -1,18 +1,18 @@
 input = <<eos
 eos
 
-puts input.
-  gsub("\t", '# ').
-  gsub('  -', '').
-  gsub('    ', '').
-  gsub(' string', ':').
-  gsub(' int', ':').
-  gsub(' value', ':')
+PREFIX = 'prometheus_alert_manager'
 
-require 'yaml'
 puts '############################################################'
 puts '# Auto generated'
 puts '############################################################'
-YAML.load(input).each do |k, v|
-  puts "#{k}: {{ #{k.gsub('.', '__').gsub('-', '_')} }}"
+input.each_line do |line|
+  line = line.chomp
+  next if line.empty?
+  if line.start_with?('-')
+    argument = line[1..line.size-1].split[0]
+    puts %Q(#{argument}: "{{ #{PREFIX}_#{argument.gsub('.', '__').gsub('-', '_')} }}")
+  else
+    # puts "# #{line}"
+  end
 end
