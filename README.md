@@ -259,10 +259,10 @@ prometheus_collector__systemd__private:
 # Establish a private, direct connection to systemd without dbus.
 prometheus_collector__textfile__directory:
 # Directory to read text files with metrics from.
-prometheus_collector__enabled:
-# Comma_separated list of collector to use. (default "conntrack,diskstats,entropy,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,sockstat,stat,textfile,time,uname,vmstat")
-prometheus_collector__print:
-# If true, print available collector and exit.
+prometheus_collectors__enabled:
+# Comma_separated list of collectors to use. (default "conntrack,diskstats,entropy,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,sockstat,stat,textfile,time,uname,vmstat")
+prometheus_collectors__print:
+# If true, print available collectors and exit.
 prometheus_collector__log__format:
 # If set use a syslog logger or JSON logging. Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
 prometheus_collector__log__level: 'info'
