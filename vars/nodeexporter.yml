@@ -3,6 +3,7 @@
 ############################################################
 prometheus_node_exporter_service_config:
   collector.diskstats.ignored-devices: "{{ prometheus_collector__diskstats__ignored_devices }}"
+  collector.filesystem.ignored-fs-types: "{{ prometheus_collector__filesystem__ignored_fs_types }}"
   collector.filesystem.ignored-mount-points: "{{ prometheus_collector__filesystem__ignored_mount_points }}"
   collector.megacli.command: "{{ prometheus_collector__megacli__command }}"
   collector.netdev.ignored-devices: "{{ prometheus_collector__netdev__ignored_devices }}"
@@ -12,6 +13,8 @@ prometheus_node_exporter_service_config:
   collector.supervisord.url: "{{ prometheus_collector__supervisord__url }}"
   collector.sysfs: "{{ prometheus_collector__sysfs }}"
   collector.systemd.private: "{{ prometheus_collector__systemd__private }}"
+  collector.systemd.unit-blacklist: "{{ prometheus_collector__systemd__unit_blacklist }}"
+  collector.systemd.unit-whitelist: "{{ prometheus_collector__systemd__unit_whitelist }}"
   collector.textfile.directory: "{{ prometheus_collector__textfile__directory }}"
   collectors.enabled: "{{ prometheus_collectors__enabled }}"
   collectors.print: "{{ prometheus_collectors__print }}"

@@ -23,7 +23,7 @@ prometheus_version: '1.4.1'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
-prometheus_node_exporter_version: '0.12.0'
+prometheus_node_exporter_version: '0.13.0'
 
 # Alert manager
 prometheus_alert_manager_version: '0.5.1'
@@ -211,6 +211,8 @@ prometheus_web__user_assets:
 
 prometheus_collector__diskstats__ignored_devices:
 # Regexp of devices to ignore for diskstats. (default "^(ram|loop|fd|(h|s|v|xv)d[a_z])\d+$")
+prometheus_collector__filesystem__ignored_fs_types: '^(sys|proc)fs$'
+# Regexp of filesystem types to ignore for filesystem collector. (default "^(sys|proc)fs$")
 prometheus_collector__filesystem__ignored_mount_points:
 # Regexp of mount points to ignore for filesystem. (default "^/(sys|proc|dev)($|/)")
 prometheus_collector__megacli__command:
@@ -227,6 +229,10 @@ prometheus_collector__supervisord__url:
 # XML RPC endpoint (default "http://localhost:9001/RPC2")
 prometheus_collector__sysfs:
 # sysfs mountpoint. (default "/sys")
+prometheus_collector__systemd__unit_blacklist:
+# Regexp of systemd units to blacklist. Units must both match whitelist and not match blacklist to be included.
+prometheus_collector__systemd__unit_whitelist: '.+'
+# Regexp of systemd units to whitelist. Units must both match whitelist and not match blacklist to be included. (default ".+")
 prometheus_collector__systemd__private:
 # Establish a private, direct connection to systemd without dbus.
 prometheus_collector__textfile__directory:
