@@ -42,6 +42,8 @@ prometheus_service_config:
   web.enable-remote-shutdown: "{{ prometheus_web__enable_remote_shutdown }}"
   web.external-url: "{{ prometheus_web__external_url }}"
   web.listen-address: "{{ prometheus_web__listen_address }}"
+  web.max-connections: "{{ prometheus_web__max_connections }}"
+  web.read-timeout: "{{ prometheus_web__read_timeout }}"
   web.route-prefix: "{{ prometheus_web__route_prefix }}"
   web.telemetry-path: "{{ prometheus_web__telemetry_path }}"
   web.user-assets: "{{ prometheus_web__user_assets }}"
