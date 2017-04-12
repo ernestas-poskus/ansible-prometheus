@@ -47,7 +47,7 @@ prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
 
 # Prometheus
-prometheus_version: '1.4.1'
+prometheus_version: '1.5.2'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
@@ -226,6 +226,10 @@ prometheus_web__external_url:
 # automatically.
 prometheus_web__listen_address: ":9090"
 # Address to listen on for the web interface, API, and telemetry.
+prometheus_web__max_connections: 512
+# Maximum number of simultaneous connections.
+prometheus_web__read_timeout: '30s'
+# Maximum duration before timing out read of the request, and closing
 prometheus_web__route_prefix:
 # Prefix for the internal routes of web endpoints. Defaults to path
 # of .web.external.url.
