@@ -23,7 +23,7 @@ prometheus_version: '1.4.1'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
-prometheus_node_exporter_version: '0.13.0'
+prometheus_node_exporter_version: '0.14.0'
 
 # Alert manager
 prometheus_alert_manager_version: '0.5.1'
@@ -225,6 +225,8 @@ prometheus_collector__ntp__server:
 # NTP server to use for ntp.
 prometheus_collector__procfs:
 # procfs mountpoint. (default "/proc")
+prometheus_collector__runit__servicedir: '/etc/service'
+# Path to runit service directory. (default "/etc/service")
 prometheus_collector__supervisord__url:
 # XML RPC endpoint (default "http://localhost:9001/RPC2")
 prometheus_collector__sysfs:
@@ -237,6 +239,8 @@ prometheus_collector__systemd__private:
 # Establish a private, direct connection to systemd without dbus.
 prometheus_collector__textfile__directory:
 # Directory to read text files with metrics from.
+prometheus_collector__wifi:
+# test fixtures to use for wifi collector metrics
 prometheus_collectors__enabled:
 # Comma_separated list of collectors to use. (default "conntrack,diskstats,entropy,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,sockstat,stat,textfile,time,uname,vmstat")
 prometheus_collectors__print:
