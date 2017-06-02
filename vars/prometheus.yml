@@ -28,6 +28,7 @@ prometheus_service_config:
   storage.local.retention: "{{ prometheus_storage__local__retention }}"
   storage.local.series-file-shrink-ratio: "{{ prometheus_storage__local__series_file_shrink_ratio }}"
   storage.local.series-sync-strategy: "{{ prometheus_storage__local__series_sync_strategy }}"
+  storage.local.target-heap-size: "{{ prometheus_storage__local__target_heap_size }}"
   storage.remote.graphite-address: "{{ prometheus_storage__remote__graphite_address }}"
   storage.remote.graphite-prefix: "{{ prometheus_storage__remote__graphite_prefix }}"
   storage.remote.graphite-transport: "{{ prometheus_storage__remote__graphite_transport }}"
