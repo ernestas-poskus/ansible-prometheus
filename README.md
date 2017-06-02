@@ -54,7 +54,7 @@ prometheus_platform_architecture: 'linux-amd64'
 prometheus_node_exporter_version: '0.14.0'
 
 # Alert manager
-prometheus_alert_manager_version: '0.4.2'
+prometheus_alert_manager_version: '0.6.2'
 
 # Prometheus
 # https://prometheus.io/docs/operating/configuration/
@@ -316,7 +316,6 @@ prometheus_alert_manager_config_route:
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 3h
-  continue: true
   receiver: 'default-pager'
 
 # Inhibition rules allow to mute a set of alerts given that another alert is
