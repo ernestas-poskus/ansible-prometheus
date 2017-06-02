@@ -47,7 +47,7 @@ prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
 
 # Prometheus
-prometheus_version: '1.5.2'
+prometheus_version: '1.6.3'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
@@ -68,7 +68,7 @@ prometheus_config_rule_files:
 
 # Prometheus alert manager rules
 # since Ansible uses double curly braces as well as Prometheus for
-# variable interpolation in alerts use square brackets, those will be 
+# variable interpolation in alerts use square brackets, those will be
 # replaced by curly braces in task
 prometheus_rules:
   - name: instancedown
@@ -186,6 +186,12 @@ prometheus_storage__local__series_sync_strategy: "adaptive"
 # but reduces the risk of data loss in case of an OS crash. With the
 # 'adaptive' strategy, series files are sync'd for as long as the storage
 # is not too much behind on chunk persistence.
+prometheus_storage__local__target_heap_size: 2147483648
+# The metrics storage attempts to limit its own memory usage such
+# that the total heap size approaches this value. Note that this is not a
+# hard limit. Actual heap size might be temporarily or permanently higher
+# for a variety of reasons. The default value is a relatively safe setting
+# to not use more than 3 GiB physical memory.
 prometheus_storage__remote__graphite_address:
 # The host:port of the remote Graphite server to send samples to.
 # None, if empty.
