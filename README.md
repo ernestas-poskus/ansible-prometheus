@@ -337,8 +337,6 @@ prometheus_alert_manager_log__format:
 # If set use a syslog logger or JSON logging. Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
 prometheus_alert_manager_log__level: 'info'
 # Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]. (default info)
-prometheus_alert_manager_mesh__hardware_address:
-# MAC address, i.e. mesh peer ID (default "ca:ca:ce:ca:ca:ee")
 prometheus_alert_manager_mesh__listen_address: '0.0.0.0:6783'
 # mesh listen address (default "0.0.0.0:6783")
 prometheus_alert_manager_mesh__nickname:
@@ -347,6 +345,8 @@ prometheus_alert_manager_mesh__password:
 # password to join the peer network (empty password disables encryption)
 prometheus_alert_manager_mesh__peer:
 # initial peers (may be repeated)
+prometheus_alert_manager_mesh__peer_id:
+# mesh peer ID (default: MAC address)
 prometheus_alert_manager_storage__path: "{{ prometheus_alert_manager_data_dir }}"
 # Base path for data storage. (default "data/")
 prometheus_alert_manager_web__external_url:
@@ -357,6 +357,8 @@ prometheus_alert_manager_web__external_url:
 # If omitted, relevant URL components will be derived automatically.
 prometheus_alert_manager_web__listen_address: ':9093'
 # Address to listen on for the web:erface and API. (default ":9093")
+prometheus_alert_manager_web__route_prefix:
+# Prefix for the internal routes of web endpoints. Defaults to path of -web.external-url.
 
 ```
 
