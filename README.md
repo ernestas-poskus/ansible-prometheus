@@ -54,7 +54,7 @@ prometheus_platform_architecture: 'linux-amd64'
 prometheus_node_exporter_version: '0.14.0'
 
 # Alert manager
-prometheus_alert_manager_version: '0.6.2'
+prometheus_alert_manager_version: '0.7.1'
 
 # Prometheus
 # https://prometheus.io/docs/operating/configuration/
