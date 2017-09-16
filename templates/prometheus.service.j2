@@ -6,7 +6,7 @@ After=network.target
 Wants=network.target
 
 [Service]
-ExecStart={{ prometheus_install_dir }}/{{ prometheus_archive }}/prometheus {% for key, value in prometheus_service_config.iteritems() if value is not none %}-{{ key }}={{ value }} {% endfor %}
+ExecStart={{ prometheus_install_dir }}/{{ prometheus_archive }}/prometheus {% for key, value in prometheus_service_config.items() if value is not none %}-{{ key }}={{ value }} {% endfor %}
 
 Restart=always
 RestartSec=20
