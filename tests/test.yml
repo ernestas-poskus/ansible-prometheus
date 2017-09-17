@@ -18,6 +18,11 @@
       register: command_result
       failed_when: "'disabled' in command_result.stdout"
 
+    - name: Check if push gateway service is enabled
+      command: systemctl is-enabled pushgateway
+      register: command_result
+      failed_when: "'disabled' in command_result.stdout"
+
     - shell: "systemctl status prometheus | grep -i running"
       register: status
       failed_when: status.rc != 0
@@ -27,5 +32,9 @@
       failed_when: status.rc != 0
 
     - shell: "systemctl status alertmanager | grep -i running"
+      register: status
+      failed_when: status.rc != 0
+
+    - shell: "systemctl status pushgateway | grep -i running"
       register: status
       failed_when: status.rc != 0

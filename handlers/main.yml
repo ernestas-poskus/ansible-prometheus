@@ -30,3 +30,12 @@
 
 - name: start alertmanager
   service: name=alertmanager state=started
+
+- name: restart pushgateway
+  service: name=pushgateway state=restarted enabled=yes
+
+- name: stop pushgateway
+  service: name=pushgateway state=stopped
+
+- name: start pushgateway
+  service: name=pushgateway state=started

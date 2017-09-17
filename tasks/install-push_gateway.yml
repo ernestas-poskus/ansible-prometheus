@@ -1,0 +1,16 @@
+- name: Download and extract Prometheus push gateway tarball
+  unarchive:
+    src: "{{ prometheus_push_gateway_tarball_url }}"
+    dest: "{{ prometheus_install_dir }}"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    copy: no
+    creates: "{{ prometheus_install_dir }}/{{ prometheus_push_gateway_archive }}"
+
+- name: Install Prometheus push gateway systemd service
+  template:
+    src: push_gateway.service.j2
+    dest: /etc/systemd/system/pushgateway.service
+  notify:
+    - reload daemon
+    - restart pushgateway

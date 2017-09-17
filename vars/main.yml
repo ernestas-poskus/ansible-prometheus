@@ -8,3 +8,6 @@ prometheus_node_exporter_tarball_url: "https://github.com/prometheus/node_export
 
 prometheus_alert_manager_archive: "alertmanager-{{ prometheus_alert_manager_version }}.{{ prometheus_platform_architecture }}"
 prometheus_alert_manager_tarball_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alert_manager_version }}/{{ prometheus_alert_manager_archive }}.tar.gz"
+
+prometheus_push_gateway_archive: "pushgateway-{{ prometheus_push_gateway_version }}.{{ prometheus_platform_architecture }}"
+prometheus_push_gateway_tarball_url: "https://github.com/prometheus/pushgateway/releases/download/v{{ prometheus_push_gateway_version }}/{{ prometheus_push_gateway_archive }}.tar.gz"
