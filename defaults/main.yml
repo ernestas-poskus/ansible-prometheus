@@ -71,11 +71,6 @@ prometheus_config_scrape_configs:
     consul_sd_configs:
       - server: "localhost:8500"
 
-  # - job_name: service-marathon
-  #   marathon_sd_configs:
-  #   - servers:
-  #     - 'http://localhost.com:8080'
-
 # == ALERT MANAGER ==
 prometheus_alertmanager__notification_queue_capacity: 10000
 # The capacity of the queue for pending alert manager notifications.

@@ -33,6 +33,7 @@ Role Variables
 prometheus_install: true
 prometheus_node_exporter_install: true
 prometheus_alert_manager_install: true
+prometheus_push_gateway_install: false
 
 prometheus_owner: 'prometheus'
 prometheus_group: 'prometheus'
@@ -56,6 +57,9 @@ prometheus_node_exporter_version: '0.14.0'
 
 # Alert manager
 prometheus_alert_manager_version: '0.8.0'
+
+# Pushgateway
+prometheus_push_gateway_version: '0.4.0'
 
 # Prometheus
 # https://prometheus.io/docs/operating/configuration/
@@ -95,11 +99,6 @@ prometheus_config_scrape_configs:
   - job_name: 'consul-services'
     consul_sd_configs:
       - server: "localhost:8500"
-
-  # - job_name: service-marathon
-  #   marathon_sd_configs:
-  #   - servers:
-  #     - 'http://localhost.com:8080'
 
 # == ALERT MANAGER ==
 prometheus_alertmanager__notification_queue_capacity: 10000
@@ -264,7 +263,7 @@ prometheus_collector__ntp__server:
 # NTP server to use for ntp.
 prometheus_collector__procfs:
 # procfs mountpoint. (default "/proc")
-prometheus_collector__runit__servicedir:
+prometheus_collector__runit__servicedir: '/etc/service'
 # Path to runit service directory. (default "/etc/service")
 prometheus_collector__supervisord__url:
 # XML RPC endpoint (default "http://localhost:9001/RPC2")
