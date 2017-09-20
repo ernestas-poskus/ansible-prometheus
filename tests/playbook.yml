@@ -3,3 +3,7 @@
   remote_user: root
   roles:
     - role: role_under_test
+      prometheus_install: true
+      prometheus_node_exporter_install: true
+      prometheus_alert_manager_install: true
+      prometheus_push_gateway_install: true

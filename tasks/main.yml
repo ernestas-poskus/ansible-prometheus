@@ -3,6 +3,7 @@
 - include_vars: 'nodeexporter.yml'
 - include_vars: 'prometheus.yml'
 - include_vars: 'alertmanager.yml'
+- include_vars: 'pushgateway.yml'
 
 - name: Create Prometheus group
   group:
@@ -52,3 +53,7 @@
 - name: Install Prometheus alert manager
   include: install-alert_manager.yml
   when: prometheus_alert_manager_install
+
+- name: Install Pushgateway
+  include: install-push_gateway.yml
+  when: prometheus_push_gateway_install

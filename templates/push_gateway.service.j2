@@ -1,0 +1,20 @@
+# {{ansible_managed}}
+
+[Unit]
+Description=Prometheus alert manager service
+After=network.target
+Wants=network.target
+
+[Service]
+ExecStart={{ prometheus_install_dir }}/{{ prometheus_push_gateway_archive }}/pushgateway {% for config in prometheus_push_gateway_service_config if config[1] is not none %}-{{ config[0] }}={{ config[1] }} {% endfor %}
+
+Restart=always
+RestartSec=20
+TimeoutSec=300
+User={{prometheus_owner}}
+Group={{prometheus_group}}
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
