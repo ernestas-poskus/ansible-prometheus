@@ -2,7 +2,7 @@
 # Auto generated
 ############################################################
 prometheus_service_config:
-  - ['config.file', "{{ prometheus_config_dir }}/prometheus.yml"]
+  - ['config.file', "{{ prometheus_config__file }}"]
   - ['alertmanager.notification-queue-capacity', "{{ prometheus_alertmanager__notification_queue_capacity }}"]
   - ['alertmanager.timeout', "{{ prometheus_alertmanager__timeout }}"]
   - ['alertmanager.url', "{{ prometheus_alertmanager__url }}"]

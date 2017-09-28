@@ -100,6 +100,8 @@ prometheus_config_scrape_configs:
     consul_sd_configs:
       - server: "localhost:8500"
 
+prometheus_config__file: "{{ prometheus_config_dir }}/prometheus.yml"
+# Prometheus configuration file name.
 # == ALERT MANAGER ==
 prometheus_alertmanager__notification_queue_capacity: 10000
 # The capacity of the queue for pending alert manager notifications.
