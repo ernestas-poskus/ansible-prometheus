@@ -20,7 +20,7 @@ prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
 
 # Prometheus
-prometheus_version: '1.7.2'
+prometheus_version: '1.8.0'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
