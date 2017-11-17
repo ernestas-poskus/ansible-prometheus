@@ -56,7 +56,7 @@ prometheus_platform_architecture: 'linux-amd64'
 prometheus_node_exporter_version: '0.15.1'
 
 # Alert manager
-prometheus_alert_manager_version: '0.9.1'
+prometheus_alert_manager_version: '0.11.0'
 
 # Pushgateway
 prometheus_push_gateway_version: '0.4.0'
@@ -310,8 +310,6 @@ prometheus_alert_manager_config__file: "{{ prometheus_alert_manager_config_dir }
 # Alertmanager configuration file name. (default "alertmanager.yml")
 prometheus_alert_manager_data__retention: '120h0m0s'
 # How long to keep data for. (default 120h0m0s)
-prometheus_alert_manager_log__format:
-# If set use a syslog logger or JSON logging. Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
 prometheus_alert_manager_log__level: 'info'
 # Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]. (default info)
 prometheus_alert_manager_mesh__listen_address: '0.0.0.0:6783'
