@@ -38,3 +38,8 @@
     - shell: "systemctl status pushgateway | grep -i running"
       register: status
       failed_when: status.rc != 0
+
+    - name: Check alertmanager receivers configuration is valid
+      command: cat /etc/prometheus/alertmanager/alertmanager.yml
+      register: command_result
+      failed_when: "'[[ range $Alerts ]][[ $Annotations.summary ]]' in command_result.stdout"

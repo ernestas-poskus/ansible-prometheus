@@ -19,5 +19,5 @@
 {% endif %}
 
 {% if prometheus_alert_manager_config_receivers is not none %}
-{{ {'receivers': prometheus_alert_manager_config_receivers} | to_nice_yaml }}
+{{ {'receivers': prometheus_alert_manager_config_receivers} | to_json | regex_replace('\\[\\[', '{{') | regex_replace('\\]\\]', '}}') | from_json | to_nice_yaml }}
 {% endif %}

@@ -7,3 +7,16 @@
       prometheus_node_exporter_install: true
       prometheus_alert_manager_install: true
       prometheus_push_gateway_install: true
+      prometheus_alert_manager_config_global:
+        slack_api_url: 'https://github.com/ernestas-poskus/ansible-prometheus/pull/42'
+      prometheus_alert_manager_config_receivers:
+        - name: 'default-pager'
+          pagerduty_configs:
+          - service_key: '<team-X-key>'
+        - name: 'default'
+          slack_configs:
+            - channel: '#alerts'
+              username: 'Alert-Manager'
+              title: "[[ range $Alerts ]][[ $Annotations.summary ]]\n[[ end ]]"
+              text: "[[ range $Alerts ]][[ $Annotations.description ]]\n[[ end ]]"
+              send_resolved: true
