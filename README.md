@@ -99,6 +99,12 @@ prometheus_config_scrape_configs:
   #   consul_sd_configs:
   #     - server: "localhost:8500"
 
+# Allow Prometheus to disover alert managers
+prometheus_config_alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - localhost:9093
 
 prometheus_config__file: "{{ prometheus_config_dir }}/prometheus.yml"
 # Prometheus configuration file name.

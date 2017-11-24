@@ -15,3 +15,7 @@
 {% if prometheus_config_scrape_configs is not none and prometheus_config_scrape_configs | length > 0 %}
 {{ {'scrape_configs': prometheus_config_scrape_configs} | to_nice_yaml }}
 {% endif %}
+
+{% if prometheus_config_alerting is not none and prometheus_config_alerting | length > 0 %}
+{{ {'alerting': prometheus_config_alerting} | to_nice_yaml }}
+{% endif %}
