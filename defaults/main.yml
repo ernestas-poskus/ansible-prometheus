@@ -56,6 +56,7 @@ prometheus_rules:
         summary: 'Instance [[ $labels.instance ]] down'
         description: '[[ $labels.instance ]] of job [[ $labels.job ]] has been down for more than 10 seconds.'
 
+# Allow Prometheus to disover alert managers
 prometheus_config_scrape_configs:
   # - job_name: 'prometheus'
   #   honor_labels: true
@@ -69,6 +70,13 @@ prometheus_config_scrape_configs:
   # - job_name: 'consul-services'
   #   consul_sd_configs:
   #     - server: "localhost:8500"
+
+# Allow Prometheus to disover alert managers
+prometheus_config_alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - localhost:9093
 
 prometheus_config__file: "{{ prometheus_config_dir }}/prometheus.yml"
 # Prometheus configuration file name.
