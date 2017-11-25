@@ -307,6 +307,10 @@ prometheus_alert_manager_config_route:
 # already critical.
 prometheus_alert_manager_config_inhibit_rules:
 
+# Prometheus alert manager receivers
+# since Ansible uses double curly braces as well as Prometheus for
+# variable interpolation in receivers use double square brackets,
+# those will be replaced to curly braces.
 prometheus_alert_manager_config_receivers:
   - name: 'default-pager'
     pagerduty_configs:
