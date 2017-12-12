@@ -34,6 +34,7 @@ prometheus_install: true
 prometheus_node_exporter_install: true
 prometheus_alert_manager_install: true
 prometheus_push_gateway_install: false
+prometheus_snmp_exporter_install: false
 
 prometheus_owner: 'prometheus'
 prometheus_group: 'prometheus'
@@ -47,6 +48,7 @@ prometheus_data_dir: "{{ prometheus_lib_dir }}/prometheus2"
 prometheus_alert_manager_data_dir: "{{ prometheus_lib_dir }}/alertmanager"
 prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
+prometheus_snmp_exporter_config_dir: "{{ prometheus_config_dir }}/snmpexporter"
 
 # Prometheus
 prometheus_version: '2.0.0'
@@ -60,6 +62,9 @@ prometheus_alert_manager_version: '0.11.0'
 
 # Pushgateway
 prometheus_push_gateway_version: '0.4.0'
+
+# SNMP exporter
+prometheus_snmp_exporter_version: '0.8.0'
 ```
 
 ![DOCS: Prometheus variables](/docs/prometheus.md)
@@ -69,6 +74,8 @@ prometheus_push_gateway_version: '0.4.0'
 ![DOCS: Alert manager variables](/docs/alert_manager.md)
 
 ![DOCS: Pushgateway variables](/docs/push_gateway.md)
+
+![DOCS: SNMP exporter variables](/docs/snmp_exporter.md)
 
 Dependencies
 ------------

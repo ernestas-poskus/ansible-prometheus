@@ -39,3 +39,12 @@
 
 - name: start pushgateway
   service: name=pushgateway state=started
+
+- name: restart snmpexporter
+  service: name=snmpexporter state=restarted enabled=yes
+
+- name: stop snmpexporter
+  service: name=snmpexporter state=stopped
+
+- name: start snmpexporter
+  service: name=snmpexporter state=started
