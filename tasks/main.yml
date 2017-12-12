@@ -37,6 +37,7 @@
     - "{{ prometheus_alert_manager_templates_dir }}"
     - "{{ prometheus_rules_dir }}"
     - "{{ prometheus_snmp_exporter_config_dir }}"
+    - "{{ prometheus_blackbox_exporter_config_dir }}"
 
 - name: Install Prometheus
   include: install-prometheus.yml
@@ -57,3 +58,7 @@
 - name: Install Prometheus SNMP exporter
   include: install-snmp_exporter.yml
   when: prometheus_snmp_exporter_install
+
+- name: Install Prometheus Blackbox exporter
+  include: install-blackbox_exporter.yml
+  when: prometheus_blackbox_exporter_install

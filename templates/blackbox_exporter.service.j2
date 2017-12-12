@@ -1,0 +1,22 @@
+# {{ansible_managed}}
+
+[Unit]
+Description=Prometheus blackbox exporter service
+After=network.target
+Wants=network.target
+
+[Service]
+ExecStart={{ prometheus_install_dir }}/{{ prometheus_blackbox_exporter_archive }}/blackbox_exporter {% for config in prometheus_blackbox_exporter_service_config if config[1] is not none %}--{{ config[0] }}={{ config[1] }} {% endfor %}
+
+ExecReload=/bin/kill -HUP $MAINPID
+
+Restart=always
+RestartSec=20
+TimeoutSec=300
+User={{prometheus_owner}}
+Group={{prometheus_group}}
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

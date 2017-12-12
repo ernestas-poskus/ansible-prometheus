@@ -6,6 +6,7 @@ prometheus_node_exporter_install: true
 prometheus_alert_manager_install: true
 prometheus_push_gateway_install: false
 prometheus_snmp_exporter_install: false
+prometheus_blackbox_exporter_install: false
 
 prometheus_owner: 'prometheus'
 prometheus_group: 'prometheus'
@@ -20,6 +21,7 @@ prometheus_alert_manager_data_dir: "{{ prometheus_lib_dir }}/alertmanager"
 prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
 prometheus_snmp_exporter_config_dir: "{{ prometheus_config_dir }}/snmpexporter"
+prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxexporter"
 
 # Prometheus
 prometheus_version: '2.0.0'
@@ -36,6 +38,9 @@ prometheus_push_gateway_version: '0.4.0'
 
 # SNMP exporter
 prometheus_snmp_exporter_version: '0.8.0'
+
+# Blackbox exporter
+prometheus_blackbox_exporter_version: '0.11.0'
 
 # Prometheus
 # https://prometheus.io/docs/operating/configuration/
@@ -352,3 +357,21 @@ prometheus_snmp_exporter_log__level: 'info'
 
 # Set the log target and format. Example: "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
 prometheus_snmp_exporter_log__format: 'logger:stderr'
+
+# Blackbox exporter
+# https://github.com/prometheus/blackbox_exporter
+
+prometheus_black_box_config__file: "{{ prometheus_blackbox_exporter_config_dir }}/blackbox.yml"
+# Blackbox exporter configuration file.
+
+prometheus_black_box_web__listen_address: ':9115'
+# The address to listen on for HTTP requests.
+
+prometheus_black_box_timeout_offset: '0.5'
+# Offset to subtract from timeout in seconds.
+
+prometheus_black_box_log__level: 'info'
+# Only log messages with the given severity or above. One of: [debug, info, warn, error]
+
+prometheus_black_box_config_modules:
+# Blackbox modules config in format of YAML

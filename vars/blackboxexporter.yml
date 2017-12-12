@@ -1,0 +1,8 @@
+############################################################
+# Auto generated
+############################################################
+prometheus_blackbox_exporter_service_config:
+  - ['config.file', "{{ prometheus_black_box_config__file }}"]
+  - ['web.listen-address', "{{ prometheus_black_box_web__listen_address }}"]
+  - ['timeout-offset', "{{ prometheus_black_box_timeout_offset }}"]
+  - ['log.level', "{{ prometheus_black_box_log__level }}"]
