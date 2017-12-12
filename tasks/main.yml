@@ -1,11 +1,5 @@
 ---
 # tasks file for ansible-prometheus
-- include_vars: 'nodeexporter.yml'
-- include_vars: 'prometheus.yml'
-- include_vars: 'alertmanager.yml'
-- include_vars: 'pushgateway.yml'
-- include_vars: 'snmpexporter.yml'
-
 - name: Create Prometheus group
   group:
     name: "{{ prometheus_group }}"

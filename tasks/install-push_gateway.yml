@@ -1,3 +1,5 @@
+- include_vars: 'pushgateway.yml'
+
 - name: Download and extract Prometheus push gateway tarball
   unarchive:
     src: "{{ prometheus_push_gateway_tarball_url }}"
