@@ -43,3 +43,16 @@
       command: cat /etc/prometheus/alertmanager/alertmanager.yml
       register: command_result
       failed_when: "'[[ range $Alerts ]][[ $Annotations.summary ]]' in command_result.stdout"
+
+    - name: Check if snmp exporter service is enabled
+      command: systemctl is-enabled snmpexporter
+      register: command_result
+      failed_when: "'disabled' in command_result.stdout"
+
+    - shell: "systemctl status snmpexporter | grep -i running"
+      register: status
+      failed_when: status.rc != 0
+
+    - shell: "test -f /etc/prometheus/snmpexporter/snmp.yml"
+      register: status
+      failed_when: status.rc != 0

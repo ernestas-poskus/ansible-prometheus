@@ -4,6 +4,7 @@
 - include_vars: 'prometheus.yml'
 - include_vars: 'alertmanager.yml'
 - include_vars: 'pushgateway.yml'
+- include_vars: 'snmpexporter.yml'
 
 - name: Create Prometheus group
   group:
@@ -41,6 +42,7 @@
     - "{{ prometheus_alert_manager_config_dir }}"
     - "{{ prometheus_alert_manager_templates_dir }}"
     - "{{ prometheus_rules_dir }}"
+    - "{{ prometheus_snmp_exporter_config_dir }}"
 
 - name: Install Prometheus
   include: install-prometheus.yml
@@ -57,3 +59,7 @@
 - name: Install Pushgateway
   include: install-push_gateway.yml
   when: prometheus_push_gateway_install
+
+- name: Install Prometheus SNMP exporter
+  include: install-snmp_exporter.yml
+  when: prometheus_snmp_exporter_install
