@@ -12,7 +12,7 @@
 - name: Copy snmp exporter config
   copy:
     src: snmp.yml
-    dest: "{{ prometheus_snmp_exporter_config__file }}"
+    dest: "{{ prometheus_snmp_exporter_config_dir }}/snmp.yml"
     owner: "{{ prometheus_owner }}"
     group: "{{ prometheus_group }}"
   notify:
