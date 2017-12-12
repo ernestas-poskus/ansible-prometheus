@@ -1,3 +1,5 @@
+- include_vars: 'snmpexporter.yml'
+
 - name: Download and extract Prometheus snmp_exporter tarball
   unarchive:
     src: "{{ prometheus_snmp_exporter_tarball_url }}"
