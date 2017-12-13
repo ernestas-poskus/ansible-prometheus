@@ -1,0 +1,27 @@
+- include_vars: 'blackboxexporter.yml'
+
+- name: Download and extract Prometheus blackbox_exporter tarball
+  unarchive:
+    src: "{{ prometheus_blackbox_exporter_tarball_url }}"
+    dest: "{{ prometheus_install_dir }}"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    copy: no
+    creates: "{{ prometheus_install_dir }}/{{ prometheus_blackbox_exporter_archive }}"
+
+- name: Copy blackbox exporter config
+  template:
+    src: blackbox.yml.j2
+    dest: "{{ prometheus_blackbox_exporter_config_dir }}/blackbox.yml"
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+  notify:
+    - reload blackboxexporter
+
+- name: Install Prometheus blackbox exporter systemd service
+  template:
+    src: blackbox_exporter.service.j2
+    dest: /etc/systemd/system/blackboxexporter.service
+  notify:
+    - reload daemon
+    - restart blackboxexporter

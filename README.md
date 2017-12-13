@@ -10,6 +10,8 @@ Playbook installs and manages services using systemd. Currently supported:
   - Node Exporter (collects metrics of host machine)
   - Alert manager
   - Push gateway
+  - SNMP exporter
+  - Blackbox exporter
 
 Playbook includes extensive configuration options check default/main.yml
 
@@ -35,6 +37,7 @@ prometheus_node_exporter_install: true
 prometheus_alert_manager_install: true
 prometheus_push_gateway_install: false
 prometheus_snmp_exporter_install: false
+prometheus_blackbox_exporter_install: false
 
 prometheus_owner: 'prometheus'
 prometheus_group: 'prometheus'
@@ -49,6 +52,7 @@ prometheus_alert_manager_data_dir: "{{ prometheus_lib_dir }}/alertmanager"
 prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
 prometheus_snmp_exporter_config_dir: "{{ prometheus_config_dir }}/snmpexporter"
+prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxexporter"
 
 # Prometheus
 prometheus_version: '2.0.0'
@@ -65,6 +69,9 @@ prometheus_push_gateway_version: '0.4.0'
 
 # SNMP exporter
 prometheus_snmp_exporter_version: '0.8.0'
+
+# Blackbox exporter
+prometheus_blackbox_exporter_version: '0.11.0'
 ```
 
 ![DOCS: Prometheus variables](/docs/prometheus.md)
@@ -76,6 +83,8 @@ prometheus_snmp_exporter_version: '0.8.0'
 ![DOCS: Pushgateway variables](/docs/push_gateway.md)
 
 ![DOCS: SNMP exporter variables](/docs/snmp_exporter.md)
+
+![DOCS: Blackbox exporter variables](/docs/blackbox_exporter.md)
 
 Dependencies
 ------------

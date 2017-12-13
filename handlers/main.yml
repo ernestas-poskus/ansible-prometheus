@@ -48,3 +48,15 @@
 
 - name: start snmpexporter
   service: name=snmpexporter state=started
+
+- name: restart blackboxexporter
+  service: name=blackboxexporter state=restarted enabled=yes
+
+- name: stop blackboxexporter
+  service: name=blackboxexporter state=stopped
+
+- name: start blackboxexporter
+  service: name=blackboxexporter state=started
+
+- name: reload blackboxexporter
+  service: name=blackboxexporter state=reloaded

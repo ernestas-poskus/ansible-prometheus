@@ -56,3 +56,24 @@
     - shell: "test -f /etc/prometheus/snmpexporter/snmp.yml"
       register: status
       failed_when: status.rc != 0
+
+    - name: Check if blackbox exporter service is enabled
+      command: systemctl is-enabled blackboxexporter
+      register: command_result
+      failed_when: "'disabled' in command_result.stdout"
+
+    - shell: "systemctl status blackboxexporter | grep -i running"
+      register: status
+      failed_when: status.rc != 0
+
+    - shell: "systemctl reload blackboxexporter"
+      register: status
+      failed_when: status.rc != 0
+
+    - shell: "test -f /etc/prometheus/blackboxexporter/blackbox.yml"
+      register: status
+      failed_when: status.rc != 0
+
+    - shell: "grep 'NICK prober' /etc/prometheus/blackboxexporter/blackbox.yml"
+      register: status
+      failed_when: status.rc != 0

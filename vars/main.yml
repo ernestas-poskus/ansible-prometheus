@@ -14,3 +14,6 @@ prometheus_push_gateway_tarball_url: "https://github.com/prometheus/pushgateway/
 
 prometheus_snmp_exporter_archive: "snmp_exporter-{{ prometheus_snmp_exporter_version }}.{{ prometheus_platform_architecture }}"
 prometheus_snmp_exporter_tarball_url: "https://github.com/prometheus/snmp_exporter/releases/download/v{{ prometheus_snmp_exporter_version }}/{{ prometheus_snmp_exporter_archive }}.tar.gz"
+
+prometheus_blackbox_exporter_archive: "blackbox_exporter-{{ prometheus_blackbox_exporter_version }}.{{ prometheus_platform_architecture }}"
+prometheus_blackbox_exporter_tarball_url: "https://github.com/prometheus/blackbox_exporter/releases/download/v{{ prometheus_blackbox_exporter_version }}/{{ prometheus_blackbox_exporter_archive }}.tar.gz"
