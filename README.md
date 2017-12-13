@@ -15,6 +15,13 @@ Playbook installs and manages services using systemd. Currently supported:
 
 Playbook includes extensive configuration options check default/main.yml
 
+Contribution
+------------
+
+If you can't find exporter you need check these examples
+![#47](https://github.com/ernestas-poskus/ansible-prometheus/pull/47) or ![#50](https://github.com/ernestas-poskus/ansible-prometheus/pull/50)
+and make pull request.
+
 Installation
 ------------
 
