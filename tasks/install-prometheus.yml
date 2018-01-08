@@ -19,6 +19,17 @@
   notify:
     restart prometheus
 
+- name: Configure node_exporter targets
+  template:
+    src: "{{ item.src }}"
+    dest: /etc/prometheus/tgroups/{{ item.dst }}
+    owner: prometheus
+    group: prometheus
+    mode: 0775
+  with_items:
+    - { src: 'node_targets.yml.j2', dst: 'node_targets.yml' }
+  when: prometheus_node_exporter_target_group is defined and not prometheus_node_exporter_target_group == ''
+
 - name: "Making Prometheus rules file {{ item.name }}"
   copy:
     content: "{{ { 'groups': [item] } | to_json | regex_replace('\\[\\[', '{{') | regex_replace('\\]\\]', '}}') | from_json | to_nice_yaml }}"

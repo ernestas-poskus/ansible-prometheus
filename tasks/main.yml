@@ -38,6 +38,7 @@
     - "{{ prometheus_rules_dir }}"
     - "{{ prometheus_snmp_exporter_config_dir }}"
     - "{{ prometheus_blackbox_exporter_config_dir }}"
+    - "{{ prometheus_tgroups_config_dir }}"
 
 - name: Install Prometheus
   include: install-prometheus.yml

@@ -22,6 +22,10 @@ prometheus_alert_manager_config_dir: "{{ prometheus_config_dir }}/alertmanager"
 prometheus_alert_manager_templates_dir: "{{ prometheus_config_dir }}/alertmanager/templates"
 prometheus_snmp_exporter_config_dir: "{{ prometheus_config_dir }}/snmpexporter"
 prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxexporter"
+prometheus_tgroups_config_dir: "{{ prometheus_config_dir }}/tgroups"
+
+# Which hosts from an ansible_group should automatically be monitored via a target group, e.g. 'all' or 'node_exporter'
+prometheus_node_exporter_target_group: ''
 
 # Prometheus
 prometheus_version: '2.0.0'
@@ -80,6 +84,14 @@ prometheus_config_scrape_configs:
   # - job_name: 'consul-services'
   #   consul_sd_configs:
   #     - server: "localhost:8500"
+
+  # Use in combination with prometheus_node_exporter_target_group variable to automatically add all hosts from an ansible group to prometheus
+  # - job_name: 'node'
+  #   file_sd_configs:
+  #     - files:
+  #       - '{{ prometheus_tgroups_config_dir }}/*.json'
+  #       - '{{ prometheus_tgroups_config_dir }}/*.yml'
+  #       - '{{ prometheus_tgroups_config_dir }}/*.yaml'
 
 # Allow Prometheus to disover alert managers
 prometheus_config_alerting:

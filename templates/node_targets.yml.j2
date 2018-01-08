@@ -1,0 +1,4 @@
+- targets:
+{% for host in groups[ prometheus_node_exporter_target_group ] %}
+  - "{{ hostvars[host].inventory_hostname }}:{{ prometheus_collector__web__listen_address }}"
+{% endfor %}
