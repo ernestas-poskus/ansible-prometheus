@@ -6,9 +6,9 @@
     state: directory
     owner: "{{ prometheus_owner }}"
     group: "{{ prometheus_group }}"
-    recurse: yes
     mode: 0750
   with_items:
+    - "{{ prometheus_config_dir }}"
     - "{{ prometheus_snmp_exporter_config_dir }}"
 
 - name: Download and extract Prometheus snmp_exporter tarball
