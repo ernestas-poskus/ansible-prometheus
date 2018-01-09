@@ -1,6 +1,6 @@
 - include_vars: 'prometheus.yml'
 
-- name: "Creating directories"
+- name: "Creating Prometheus directories"
   file:
     path: "{{ item }}"
     state: directory

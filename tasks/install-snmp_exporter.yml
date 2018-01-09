@@ -1,6 +1,6 @@
 - include_vars: 'snmpexporter.yml'
 
-- name: "Creating directories"
+- name: "Creating snmp exporter directories"
   file:
     path: "{{ item }}"
     state: directory
