@@ -1,6 +1,6 @@
 - include_vars: 'alertmanager.yml'
 
-- name: "Creating alert manager directories"
+- name: Creating alert manager directories
   file:
     path: "{{ item }}"
     state: directory
