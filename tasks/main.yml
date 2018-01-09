@@ -13,9 +13,9 @@
     shell: /sbin/nologin
     state: present
 
-- name: "Create /usr/local/opt"
+- name: "Create {{ prometheus_install_dir }}"
   file:
-    path: "/usr/local/opt"
+    path: "{{ prometheus_install_dir }}"
     state: directory
     owner: "root"
     group: "root"
