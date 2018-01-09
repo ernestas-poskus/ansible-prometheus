@@ -1,5 +1,16 @@
 - include_vars: 'snmpexporter.yml'
 
+- name: "Creating directories"
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    recurse: yes
+    mode: 0750
+  with_items:
+    - "{{ prometheus_snmp_exporter_config_dir }}"
+
 - name: Download and extract Prometheus snmp_exporter tarball
   unarchive:
     src: "{{ prometheus_snmp_exporter_tarball_url }}"
