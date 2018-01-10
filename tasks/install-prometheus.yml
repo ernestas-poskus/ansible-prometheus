@@ -1,5 +1,18 @@
 - include_vars: 'prometheus.yml'
 
+- name: Creating Prometheus directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    mode: 0750
+  with_items:
+    - "{{ prometheus_config_dir }}"
+    - "{{ prometheus_data_dir }}"
+    - "{{ prometheus_lib_dir }}"
+    - "{{ prometheus_rules_dir }}"
+
 - name: Download and extract Prometheus tarball
   unarchive:
     src: "{{ prometheus_tarball_url }}"

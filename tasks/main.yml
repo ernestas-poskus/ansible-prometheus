@@ -21,24 +21,6 @@
     group: "root"
     mode: 0755
 
-- name: "Creating mkdir {{ item }}"
-  file:
-    path: "{{ item }}"
-    state: directory
-    owner: "{{ prometheus_owner }}"
-    group: "{{ prometheus_group }}"
-    mode: 0750
-  with_items:
-    - "{{ prometheus_config_dir }}"
-    - "{{ prometheus_data_dir }}"
-    - "{{ prometheus_lib_dir }}"
-    - "{{ prometheus_alert_manager_data_dir }}"
-    - "{{ prometheus_alert_manager_config_dir }}"
-    - "{{ prometheus_alert_manager_templates_dir }}"
-    - "{{ prometheus_rules_dir }}"
-    - "{{ prometheus_snmp_exporter_config_dir }}"
-    - "{{ prometheus_blackbox_exporter_config_dir }}"
-
 - name: Install Prometheus
   include: install-prometheus.yml
   when: prometheus_install

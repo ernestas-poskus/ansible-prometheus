@@ -1,5 +1,16 @@
 - include_vars: 'blackboxexporter.yml'
 
+- name: Creating blackbox exporter directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ prometheus_owner }}"
+    group: "{{ prometheus_group }}"
+    mode: 0750
+  with_items:
+    - "{{ prometheus_config_dir }}"
+    - "{{ prometheus_blackbox_exporter_config_dir }}"
+
 - name: Download and extract Prometheus blackbox_exporter tarball
   unarchive:
     src: "{{ prometheus_blackbox_exporter_tarball_url }}"
