@@ -3,7 +3,7 @@
 - name: Set prometheus_platform_architecture to linux-amd64
   set_fact:
     prometheus_platform_architecture: "linux-amd64"
-  when: ansible_userspace_bits == "64" and ansible_architecture == ""
+  when: ansible_userspace_bits == "64" and ansible_architecture == "x86_64"
 
 - name: Set prometheus_platform_architecture to linux-386
   set_fact:
