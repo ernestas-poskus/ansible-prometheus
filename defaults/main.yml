@@ -25,7 +25,9 @@ prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxex
 
 # Prometheus
 prometheus_version: '2.0.0'
-prometheus_platform_architecture: 'linux-amd64'
+
+# e.g. linux-amd64, linux-386, linux-armv7
+prometheus_platform_architecture: ''
 
 # Node exporter
 prometheus_node_exporter_version: '0.15.2'

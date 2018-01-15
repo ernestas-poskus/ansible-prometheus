@@ -3,17 +3,17 @@
 - name: Set prometheus_platform_architecture to linux-amd64
   set_fact:
     prometheus_platform_architecture: "linux-amd64"
-  when: ansible_userspace_bits == "64" and ansible_architecture == "x86_64"
+  when: ansible_userspace_bits == "64" and ansible_architecture == "x86_64" and (prometheus_platform_architecture is undefined or prometheus_platform_architecture is none or prometheus_platform_architecture | trim == '')
 
 - name: Set prometheus_platform_architecture to linux-386
   set_fact:
     prometheus_platform_architecture: "linux-386"
-  when: ansible_userspace_bits == "32" and ansible_architecture == "x86_64"
+  when: ansible_userspace_bits == "32" and ansible_architecture == "x86_64" and (prometheus_platform_architecture is undefined or prometheus_platform_architecture is none or prometheus_platform_architecture | trim == '')
 
 - name: Set prometheus_platform_architecture to linux-armv7
   set_fact:
     prometheus_platform_architecture: "linux-armv7"
-  when: ansible_architecture == "armv7l"
+  when: ansible_architecture == "armv7l" and (prometheus_platform_architecture is undefined or prometheus_platform_architecture is none or prometheus_platform_architecture | trim == '')
 
 - name: Create Prometheus group
   group:
