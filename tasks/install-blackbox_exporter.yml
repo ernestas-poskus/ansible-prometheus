@@ -29,6 +29,14 @@
   notify:
     - reload blackboxexporter
 
+- name: Apply elevated privileges to blackbox_exporter for ICMP probe
+  capabilities:
+    path: "{{ prometheus_install_dir }}/{{ prometheus_blackbox_exporter_archive }}/blackbox_exporter"
+    capability: cap_net_raw+ep
+    state: present
+  notify:
+    - reload blackboxexporter
+
 - name: Install Prometheus blackbox exporter systemd service
   template:
     src: blackbox_exporter.service.j2
