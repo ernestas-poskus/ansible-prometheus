@@ -1,60 +1,45 @@
 input = <<eos
---config.file="prometheus.yml"
-Prometheus configuration file path.
---web.listen-address="0.0.0.0:9090"
-Address to listen on for UI, API, and
-telemetry.
---web.read-timeout=5m      Maximum duration before timing out read of the
-request, and closing idle connections.
---web.max-connections=512  Maximum number of simultaneous connections.
---web.external-url=<URL>   The URL under which Prometheus is externally
-reachable (for example, if Prometheus is served
-via a reverse proxy). Used for generating
-relative and absolute links back to Prometheus
-itself. If the URL has a path portion, it will
-be used to prefix all HTTP endpoints served by
-Prometheus. If omitted, relevant URL components
-will be derived automatically.
---web.route-prefix=<path>  Prefix for the internal routes of web
-endpoints. Defaults to path of --web.external-url.
---web.user-assets=<path>   Path to static asset directory, available at /user.
---web.enable-lifecycle     Enable shutdown and reload via HTTP request.
---web.enable-admin-api     Enables API endpoints for admin control actions.
---web.console.templates="consoles"
-Path to the console template directory, available at /consoles.
---web.console.libraries="console_libraries"
-Path to the console library directory.
---storage.tsdb.path="data/"
-Base path for metrics storage.
---storage.tsdb.min-block-duration=2h
-Minimum duration of a data block before being
-persisted.
---storage.tsdb.max-block-duration=<duration>
-Maximum duration compacted blocks may span.
-(Defaults to 10% of the retention period)
---storage.tsdb.retention=15d
-How long to retain samples in the storage.
---storage.tsdb.no-lockfile
-Do not create lockfile in data directory.
---alertmanager.notification-queue-capacity=10000
-The capacity of the queue for pending alert
-manager notifications.
---alertmanager.timeout=10s
-Timeout for sending alerts to Alertmanager.
---query.lookback-delta=5m
-The delta difference allowed for retrieving metrics during expression evaluations.
---query.timeout=2m         Maximum time a query may take before being aborted.
---query.max-concurrency=20
-Maximum number of queries executed concurrently.
+--config.file="alertmanager.yml"
+			 Alertmanager configuration file name.
+--storage.path="data/"     Base path for data storage.
+--data.retention=120h      How long to keep data for.
+--alerts.gc-interval=30m   Interval between alert GC.
 --log.level=info           Only log messages with the given severity or
-above. One of: [debug, info, warn, error]
+			 above.
+--web.external-url=WEB.EXTERNAL-URL
+			 The URL under which Alertmanager is externally
+			 reachable (for example, if Alertmanager is
+			 served via a reverse proxy). Used for
+			 generating relative and absolute links back to
+			 Alertmanager itself. If the URL has a path
+			 portion, it will be used to prefix all HTTP
+			 endpoints served by Alertmanager. If omitted,
+			 relevant URL components will be derived
+			 automatically.
+--web.route-prefix=WEB.ROUTE-PREFIX
+			 Prefix for the internal routes of web
+			 endpoints. Defaults to path of
+			 --web.external-url.
+--web.listen-address=":9093"
+			 Address to listen on for the web interface and
+			 API.
+--mesh.listen-address="0.0.0.0:6783"
+			 mesh listen address. Pass an empty string to
+			 disable.
+--mesh.peer-id="ac:fd:ce:89:c3:ee"
+			 mesh peer ID
+--mesh.nickname="ow"       mesh peer nickname
+--mesh.password=""         password to join the peer network (empty
+			 password disables encryption)
+--mesh.peer=MESH.PEER ...  initial peers (may be repeated)
 eos
 
-PREFIX = 'prometheus'
+PREFIX = 'prometheus_alert_manager'
 
 puts '############################################################'
 puts '# Auto generated'
 puts '############################################################'
+buffer = []
 flags = []
 input.each_line do |line|
   line = line.chomp
@@ -75,12 +60,14 @@ input.each_line do |line|
         flags << "#  - '#{key}' # disabled by default"
       end
     else
-      puts %Q(  - ['#{key}', "{{ #{adjusted_key} }}"])
+      buffer << %Q(  - ['#{key}', "{{ #{adjusted_key} }}"])
     end
   else
-    # puts "# #{line}"
+    # buffer << "# #{line}"
   end
 end
+
+puts buffer.sort.join("\n")
 
 puts '', '', ''
 

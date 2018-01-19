@@ -31,7 +31,7 @@ prometheus_platform_architecture: 'linux-amd64'
 prometheus_node_exporter_version: '0.15.2'
 
 # Alert manager
-prometheus_alert_manager_version: '0.12.0'
+prometheus_alert_manager_version: '0.13.0'
 
 # Pushgateway
 prometheus_push_gateway_version: '0.4.0'
@@ -298,6 +298,8 @@ prometheus_alert_manager_config_receivers:
     pagerduty_configs:
     - service_key: '<team-X-key>'
 
+prometheus_alert_manager_alerts__gc_interval: '30m'
+# Interval between alert GC.
 prometheus_alert_manager_config__file: "{{ prometheus_alert_manager_config_dir }}/alertmanager.yml"
 # Alertmanager configuration file name. (default "alertmanager.yml")
 prometheus_alert_manager_data__retention: '120h0m0s'
@@ -323,7 +325,7 @@ prometheus_alert_manager_web__external_url:
 # If the URL has a path portion, it will be used to prefix all HTTP endpoints served by Alertmanager.
 # If omitted, relevant URL components will be derived automatically.
 prometheus_alert_manager_web__listen_address: ':9093'
-# Address to listen on for the web:erface and API. (default ":9093")
+# Address to listen on for the web:interface and API. (default ":9093")
 prometheus_alert_manager_web__route_prefix:
 # Prefix for the internal routes of web endpoints. Defaults to path of -web.external-url.
 
