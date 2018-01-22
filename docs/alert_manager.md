@@ -42,6 +42,8 @@ prometheus_alert_manager_config_receivers:
     pagerduty_configs:
     - service_key: '<team-X-key>'
 
+prometheus_alert_manager_alerts__gc_interval: '30m'
+# Interval between alert GC.
 prometheus_alert_manager_config__file: "{{ prometheus_alert_manager_config_dir }}/alertmanager.yml"
 # Alertmanager configuration file name. (default "alertmanager.yml")
 prometheus_alert_manager_data__retention: '120h0m0s'
