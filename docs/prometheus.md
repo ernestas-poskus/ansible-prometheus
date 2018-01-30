@@ -83,12 +83,6 @@ prometheus_web__console__libraries: 'console_libraries'
 prometheus_storage__tsdb__path: "{{ prometheus_data_dir }}"
 # Base path for metrics storage.
 
-prometheus_storage__tsdb__min_block_duration: '2h'
-# Minimum duration of a data block before being persisted.
-
-prometheus_storage__tsdb__max_block_duration:
-# Maximum duration compacted blocks may span.
-
 prometheus_storage__tsdb__retention: '15d'
 # How long to retain samples in the storage.
 

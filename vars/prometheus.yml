@@ -12,8 +12,6 @@ prometheus_service_config:
   - ['web.console.templates', "{{ prometheus_web__console__templates }}"]
   - ['web.console.libraries', "{{ prometheus_web__console__libraries }}"]
   - ['storage.tsdb.path', "{{ prometheus_storage__tsdb__path }}"]
-  - ['storage.tsdb.min-block-duration', "{{ prometheus_storage__tsdb__min_block_duration }}"]
-  - ['storage.tsdb.max-block-duration', "{{ prometheus_storage__tsdb__max_block_duration }}"]
   - ['storage.tsdb.retention', "{{ prometheus_storage__tsdb__retention }}"]
   - ['alertmanager.notification-queue-capacity', "{{ prometheus_alertmanager__notification_queue_capacity }}"]
   - ['alertmanager.timeout', "{{ prometheus_alertmanager__timeout }}"]
