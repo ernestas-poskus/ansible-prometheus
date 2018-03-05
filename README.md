@@ -19,7 +19,7 @@ Contribution
 ------------
 
 If you can't find exporter you need check these examples
-![#47](https://github.com/ernestas-poskus/ansible-prometheus/pull/47) or ![#50](https://github.com/ernestas-poskus/ansible-prometheus/pull/50)
+[#47](https://github.com/ernestas-poskus/ansible-prometheus/pull/47) or [#50](https://github.com/ernestas-poskus/ansible-prometheus/pull/50)
 and make pull request.
 
 Installation
@@ -81,17 +81,17 @@ prometheus_snmp_exporter_version: '0.9.0'
 prometheus_blackbox_exporter_version: '0.12.0'
 ```
 
-![DOCS: Prometheus variables](/docs/prometheus.md)
+[DOCS: Prometheus variables](/docs/prometheus.md)
 
-![DOCS: Node exporter variables](/docs/node_exporter.md)
+[DOCS: Node exporter variables](/docs/node_exporter.md)
 
-![DOCS: Alert manager variables](/docs/alert_manager.md)
+[DOCS: Alert manager variables](/docs/alert_manager.md)
 
-![DOCS: Pushgateway variables](/docs/push_gateway.md)
+[DOCS: Pushgateway variables](/docs/push_gateway.md)
 
-![DOCS: SNMP exporter variables](/docs/snmp_exporter.md)
+[DOCS: SNMP exporter variables](/docs/snmp_exporter.md)
 
-![DOCS: Blackbox exporter variables](/docs/blackbox_exporter.md)
+[DOCS: Blackbox exporter variables](/docs/blackbox_exporter.md)
 
 Dependencies
 ------------
