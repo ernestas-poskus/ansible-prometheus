@@ -60,15 +60,15 @@ prometheus_alert_manager_cluster__peer_timeout: "15s"
 # cluster peer timeout (default: 15s)
 prometheus_alert_manager_cluster__gossip-interval: "200ms"
 # cluster message propagation speed (default "200ms")
-prometheus_alert_manager_cluster__pushpull-interval: "1m0s"
+prometheus_alert_manager_cluster__pushpull_interval: "1m0s"
 # lower values will increase convergence speeds at expense of bandwidth (default "1m0s")
-prometheus_alert_manager_cluster__settle-timeout:
+prometheus_alert_manager_cluster__settle_timeout:
 # maximum time to wait for cluster connections to settle before evaluating notifications.
-prometheus_alert_manager_cluster__tcp-timeout: "10s"
+prometheus_alert_manager_cluster__tcp_timeout: "10s"
 # value: timeout value for tcp connections, reads and writes (default "10s")
-prometheus_alert_manager_cluster__probe-timeout: "500ms"
+prometheus_alert_manager_cluster__probe_timeout: "500ms"
 # value: probe-timeout value: time to wait for ack before marking node unhealthy (default "500ms")
-prometheus_alert_manager_cluster__probe-interval: "1s"
+prometheus_alert_manager_cluster__probe_interval: "1s"
 # value: probe-timeout value: interval between random node probes (default "1s")
 prometheus_alert_manager_storage__path: "{{ prometheus_alert_manager_data_dir }}"
 # Base path for data storage. (default "data/")
