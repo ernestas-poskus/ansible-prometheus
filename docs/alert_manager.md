@@ -50,16 +50,26 @@ prometheus_alert_manager_data__retention: '120h0m0s'
 # How long to keep data for. (default 120h0m0s)
 prometheus_alert_manager_log__level: 'info'
 # Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]. (default info)
-prometheus_alert_manager_mesh__listen_address: '0.0.0.0:6783'
-# mesh listen address (default "0.0.0.0:6783")
-prometheus_alert_manager_mesh__nickname:
-# peer nickname (default "$HOSTNAME")
-prometheus_alert_manager_mesh__password:
-# password to join the peer network (empty password disables encryption)
-prometheus_alert_manager_mesh__peer:
-# initial peers (may be repeated)
-prometheus_alert_manager_mesh__peer_id:
-# mesh peer ID (default: MAC address)
+prometheus_alert_manager_cluster__listen_address: '0.0.0.0:9094'
+# cluster listen address (default "0.0.0.0:9094")
+prometheus_alert_manager_cluster__advertise_address:
+# cluster advertise address flag is required if the instance doesn't have an IP address that is part of RFC 6980 with a default route.
+prometheus_alert_manager_cluster__peer:
+# cluster peers (repeat this flag for each additional peer)
+prometheus_alert_manager_cluster__peer_timeout: "15s"
+# cluster peer timeout (default: 15s)
+prometheus_alert_manager_cluster__gossip-interval: "200ms"
+# cluster message propagation speed (default "200ms")
+prometheus_alert_manager_cluster__pushpull-interval: "1m0s"
+# lower values will increase convergence speeds at expense of bandwidth (default "1m0s")
+prometheus_alert_manager_cluster__settle-timeout:
+# maximum time to wait for cluster connections to settle before evaluating notifications.
+prometheus_alert_manager_cluster__tcp-timeout: "10s"
+# value: timeout value for tcp connections, reads and writes (default "10s")
+prometheus_alert_manager_cluster__probe-timeout: "500ms"
+# value: probe-timeout value: time to wait for ack before marking node unhealthy (default "500ms")
+prometheus_alert_manager_cluster__probe-interval: "1s"
+# value: probe-timeout value: interval between random node probes (default "1s")
 prometheus_alert_manager_storage__path: "{{ prometheus_alert_manager_data_dir }}"
 # Base path for data storage. (default "data/")
 prometheus_alert_manager_web__external_url:
