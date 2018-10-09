@@ -62,20 +62,20 @@ prometheus_snmp_exporter_config_dir: "{{ prometheus_config_dir }}/snmpexporter"
 prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxexporter"
 
 # Prometheus
-prometheus_version: '2.2.1'
+prometheus_version: '2.4.2'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
 prometheus_node_exporter_version: '0.15.2'
 
 # Alert manager
-prometheus_alert_manager_version: '0.14.0'
+prometheus_alert_manager_version: '0.15.2'
 
 # Pushgateway
 prometheus_push_gateway_version: '0.4.0'
 
 # SNMP exporter
-prometheus_snmp_exporter_version: '0.9.0'
+prometheus_snmp_exporter_version: '0.13.0'
 
 # Blackbox exporter
 prometheus_blackbox_exporter_version: '0.12.0'
