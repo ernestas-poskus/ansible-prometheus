@@ -53,22 +53,23 @@ prometheus_alert_manager_log__level: 'info'
 prometheus_alert_manager_cluster__listen_address: '0.0.0.0:9094'
 # cluster listen address (default "0.0.0.0:9094")
 prometheus_alert_manager_cluster__advertise_address:
-# cluster advertise address flag is required if the instance doesn't have an IP address that is part of RFC 6980 with a default route.
+# cluster advertise address flag is required if the instance doesn't have an IP address that is part of RFC 6980 with a default route. 
+# must use x.x.x.x:port as hostnames not accepted
 prometheus_alert_manager_cluster__peer:
 # cluster peers (repeat this flag for each additional peer)
-prometheus_alert_manager_cluster__peer_timeout: "15s"
+prometheus_alert_manager_cluster__peer_timeout:
 # cluster peer timeout (default: 15s)
-prometheus_alert_manager_cluster__gossip-interval: "200ms"
+prometheus_alert_manager_cluster__gossip-interval:
 # cluster message propagation speed (default "200ms")
-prometheus_alert_manager_cluster__pushpull_interval: "1m0s"
+prometheus_alert_manager_cluster__pushpull_interval:
 # lower values will increase convergence speeds at expense of bandwidth (default "1m0s")
 prometheus_alert_manager_cluster__settle_timeout:
 # maximum time to wait for cluster connections to settle before evaluating notifications.
-prometheus_alert_manager_cluster__tcp_timeout: "10s"
+prometheus_alert_manager_cluster__tcp_timeout:
 # value: timeout value for tcp connections, reads and writes (default "10s")
-prometheus_alert_manager_cluster__probe_timeout: "500ms"
+prometheus_alert_manager_cluster__probe_timeout:
 # value: probe-timeout value: time to wait for ack before marking node unhealthy (default "500ms")
-prometheus_alert_manager_cluster__probe_interval: "1s"
+prometheus_alert_manager_cluster__probe_interval:
 # value: probe-timeout value: interval between random node probes (default "1s")
 prometheus_alert_manager_storage__path: "{{ prometheus_alert_manager_data_dir }}"
 # Base path for data storage. (default "data/")

@@ -7,6 +7,7 @@ prometheus_alert_manager_service_config:
   - ['data.retention', "{{ prometheus_alert_manager_data__retention }}"]
   - ['log.level', "{{ prometheus_alert_manager_log__level }}"]
   - ['cluster.listen-address', "{{ prometheus_alert_manager_cluster__listen_address }}"]
+  - ['cluster.advertise-address', "{{ prometheus_alert_manager_cluster__advertise_address }}"]
   - ['cluster.peer', "{{ prometheus_alert_manager_cluster__peer }}"]
   - ['cluster.peer-timeout', "{{ prometheus_alert_manager_cluster__peer_timeout }}"]
   - ['cluster.gossip-interval', "{{ prometheus_alert_manager_cluster__gossip_interval }}"]
