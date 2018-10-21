@@ -6,7 +6,7 @@ After=network.target
 Wants=network.target
 
 [Service]
-ExecStart={{ prometheus_install_dir }}/{{ prometheus_push_gateway_archive }}/pushgateway {% for config in prometheus_push_gateway_service_config if config[1] is not none %}-{{ config[0] }}={{ config[1] }} {% endfor %}
+ExecStart={{ prometheus_install_dir }}/{{ prometheus_push_gateway_archive }}/pushgateway {% for config in prometheus_push_gateway_service_config if config[1] is not none %}--{{ config[0] }}={{ config[1] }} {% endfor %}
 
 Restart=always
 RestartSec=20
