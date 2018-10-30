@@ -7,4 +7,5 @@ prometheus_push_gateway_service_config:
   - ['persistence.file', "{{ prometheus_push_gateway_persistence__file }}"]
   - ['persistence.interval', "{{ prometheus_push_gateway_persistence__interval }}"]
   - ['web.listen-address', "{{ prometheus_push_gateway_web__listen_address }}"]
+  - ['web.route-prefix', "{{ prometheus_push_gateway_web__route_prefix }}"]
   - ['web.telemetry-path', "{{ prometheus_push_gateway_web__telemetry_path }}"]
