@@ -1,15 +1,17 @@
 input = <<eos
 --collector.diskstats.ignored-devices="^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$"
 Regexp of devices to ignore for diskstats.
---collector.filesystem.ignored-mount-points="^/(sys|proc|dev)($|/)"
+--collector.filesystem.ignored-mount-points="^/(dev|proc|sys|var/lib/docker)($|/)"
 Regexp of mount points to ignore for filesystem
 collector.
---collector.filesystem.ignored-fs-types="^(sys|proc|auto)fs$"
-Regexp of filesystem types to ignore for filesystem collector.
---collector.megacli.command="megacli"
-Command to run megacli.
+--collector.filesystem.ignored-fs-types="^(autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs)$"
+Regexp of filesystem types to ignore for
+filesystem collector.
 --collector.netdev.ignored-devices="^$"
 Regexp of net devices to ignore for netdev
+collector.
+--collector.netstat.fields="^(.*_(InErrors|InErrs)|Ip_Forwarding|Ip(6|Ext)_(InOctets|OutOctets)|Icmp6?_(InMsgs|OutMsgs)|TcpExt_(Listen.*|Syncookies.*)|Tcp_(ActiveOpens|PassiveOpens|RetransSegs|CurrEstab)|Udp6?_(InDatagrams|OutDatagrams|NoPorts))$"
+Regexp of fields to return for netstat
 collector.
 --collector.ntp.server="127.0.0.1"
 NTP server to use for ntp collector
@@ -22,11 +24,13 @@ same local host as this collector.
 --collector.ntp.max-distance=3.46608s
 Max accumulated distance to the root
 --collector.ntp.local-offset-tolerance=1ms
-Offset between local clock and local ntpd time to tolerate
+Offset between local clock and local ntpd time
+to tolerate
 --path.procfs="/proc"     procfs mountpoint.
 --path.sysfs="/sys"       sysfs mountpoint.
 --collector.qdisc.fixtures=""
-test fixtures to use for qdisc collector end-to-end testing
+test fixtures to use for qdisc collector
+end-to-end testing
 --collector.runit.servicedir="/etc/service"
 Path to runit service directory.
 --collector.supervisord.url="http://localhost:9001/RPC2"
@@ -44,45 +48,59 @@ Establish a private, direct connection to
 systemd without dbus.
 --collector.textfile.directory=""
 Directory to read text files with metrics from.
+--collector.vmstat.fields="^(oom_kill|pgpg|pswp|pg.*fault).*"
+Regexp of fields to return for vmstat collector.
 --collector.wifi.fixtures=""
 test fixtures to use for wifi collector metrics
 --collector.arp           Enable the arp collector (default: enabled).
 --collector.bcache        Enable the bcache collector (default: enabled).
---collector.bonding       Enable the bonding collector (default: disabled).
---collector.buddyinfo     Enable the buddyinfo collector (default: disabled).
---collector.conntrack     Enable the conntrack collector (default: enabled).
+--collector.bonding       Enable the bonding collector (default: enabled).
+--collector.buddyinfo     Enable the buddyinfo collector (default:
+disabled).
+--collector.conntrack     Enable the conntrack collector (default:
+enabled).
 --collector.cpu           Enable the cpu collector (default: enabled).
---collector.diskstats     Enable the diskstats collector (default: enabled).
+--collector.diskstats     Enable the diskstats collector (default:
+enabled).
 --collector.drbd          Enable the drbd collector (default: disabled).
 --collector.edac          Enable the edac collector (default: enabled).
 --collector.entropy       Enable the entropy collector (default: enabled).
 --collector.filefd        Enable the filefd collector (default: enabled).
---collector.filesystem    Enable the filesystem collector (default: enabled).
---collector.gmond         Enable the gmond collector (default: disabled).
+--collector.filesystem    Enable the filesystem collector (default:
+enabled).
 --collector.hwmon         Enable the hwmon collector (default: enabled).
---collector.infiniband    Enable the infiniband collector (default: enabled).
---collector.interrupts    Enable the interrupts collector (default: disabled).
+--collector.infiniband    Enable the infiniband collector (default:
+enabled).
+--collector.interrupts    Enable the interrupts collector (default:
+disabled).
 --collector.ipvs          Enable the ipvs collector (default: enabled).
 --collector.ksmd          Enable the ksmd collector (default: disabled).
 --collector.loadavg       Enable the loadavg collector (default: enabled).
 --collector.logind        Enable the logind collector (default: disabled).
 --collector.mdadm         Enable the mdadm collector (default: enabled).
---collector.megacli       Enable the megacli collector (default: disabled).
 --collector.meminfo       Enable the meminfo collector (default: enabled).
---collector.meminfo_numa  Enable the meminfo_numa collector (default: disabled).
---collector.mountstats    Enable the mountstats collector (default: disabled).
+--collector.meminfo_numa  Enable the meminfo_numa collector (default:
+disabled).
+--collector.mountstats    Enable the mountstats collector (default:
+disabled).
 --collector.netdev        Enable the netdev collector (default: enabled).
 --collector.netstat       Enable the netstat collector (default: enabled).
---collector.nfs           Enable the nfs collector (default: disabled).
+--collector.nfs           Enable the nfs collector (default: enabled).
+--collector.nfsd          Enable the nfsd collector (default: enabled).
 --collector.ntp           Enable the ntp collector (default: disabled).
 --collector.qdisc         Enable the qdisc collector (default: disabled).
 --collector.runit         Enable the runit collector (default: disabled).
---collector.sockstat      Enable the sockstat collector (default: enabled).
+--collector.sockstat      Enable the sockstat collector (default:
+enabled).
 --collector.stat          Enable the stat collector (default: enabled).
---collector.supervisord   Enable the supervisord collector (default: disabled).
---collector.systemd       Enable the systemd collector (default: disabled).
---collector.tcpstat       Enable the tcpstat collector (default: disabled).
---collector.textfile      Enable the textfile collector (default: enabled).
+--collector.supervisord   Enable the supervisord collector (default:
+disabled).
+--collector.systemd       Enable the systemd collector (default:
+disabled).
+--collector.tcpstat       Enable the tcpstat collector (default:
+disabled).
+--collector.textfile      Enable the textfile collector (default:
+enabled).
 --collector.time          Enable the time collector (default: enabled).
 --collector.uname         Enable the uname collector (default: enabled).
 --collector.vmstat        Enable the vmstat collector (default: enabled).

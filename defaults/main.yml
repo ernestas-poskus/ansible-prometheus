@@ -28,7 +28,7 @@ prometheus_version: '2.2.1'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
-prometheus_node_exporter_version: '0.15.2'
+prometheus_node_exporter_version: '0.16.0'
 
 # Alert manager
 prometheus_alert_manager_version: '0.15.2'
@@ -161,10 +161,10 @@ prometheus_collector__filesystem__ignored_fs_types: '^(sys|proc|auto)fs$'
 # Regexp of filesystem types to ignore for filesystem collector.
 prometheus_collector__filesystem__ignored_mount_points: '^/(sys|proc|dev)($|/)'
 # Regexp of mount points to ignore for filesystem
-prometheus_collector__megacli__command:
-# Command to run megacli. (default "megacli")
 prometheus_collector__netdev__ignored_devices: "^$"
 # Regexp of net devices to ignore for netdev
+prometheus_collector__netstat__fields: "^(.*_(InErrors|InErrs)|Ip_Forwarding|Ip(6|Ext)_(InOctets|OutOctets)|Icmp6?_(InMsgs|OutMsgs)|TcpExt_(Listen.*|Syncookies.*)|Tcp_(ActiveOpens|PassiveOpens|RetransSegs|CurrEstab)|Udp6?_(InDatagrams|OutDatagrams|NoPorts))$"
+# Regexp of fields to return for netstat collector.
 prometheus_collector__ntp__protocol_version: 4
 # NTP protocol version (default 4)
 prometheus_collector__ntp__server: '127.0.0.1'
@@ -189,6 +189,8 @@ prometheus_collector__systemd__unit_whitelist: '.+'
 # Regexp of systemd units to whitelist. Units must both match whitelist and not match blacklist to be included. (default ".+")
 prometheus_collector__textfile__directory:
 # Directory to read text files with metrics from.
+prometheus_collector__vmstat__fields: "^(oom_kill|pgpg|pswp|pg.*fault).*"
+# Regexp of fields to return for vmstat collector.
 prometheus_collector__log__format:
 # If set use a syslog logger or JSON logging. Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
 prometheus_collector__log__level: 'info'
@@ -206,24 +208,21 @@ prometheus_collector__wifi__fixtures:
 prometheus_collector_____enabled_collectors:
   - 'collector.arp'
   - 'collector.bcache'
-  - 'collector.conntrack'
+  - 'collector.bonding'
   - 'collector.cpu'
-  - 'collector.diskstats'
   - 'collector.edac'
   - 'collector.entropy'
   - 'collector.filefd'
-  - 'collector.filesystem'
   - 'collector.hwmon'
-  - 'collector.infiniband'
   - 'collector.ipvs'
   - 'collector.loadavg'
   - 'collector.mdadm'
   - 'collector.meminfo'
   - 'collector.netdev'
   - 'collector.netstat'
-  - 'collector.sockstat'
+  - 'collector.nfs'
+  - 'collector.nfsd'
   - 'collector.stat'
-  - 'collector.textfile'
   - 'collector.time'
   - 'collector.timex'
   - 'collector.uname'
@@ -231,25 +230,27 @@ prometheus_collector_____enabled_collectors:
   - 'collector.wifi'
   - 'collector.xfs'
   - 'collector.zfs'
-#  - 'collector.bonding' # disabled by default
 #  - 'collector.buddyinfo' # disabled by default
+#  - 'collector.conntrack' # disabled by default
+#  - 'collector.diskstats' # disabled by default
 #  - 'collector.drbd' # disabled by default
-#  - 'collector.gmond' # disabled by default
+#  - 'collector.filesystem' # disabled by default
+#  - 'collector.infiniband' # disabled by default
 #  - 'collector.interrupts' # disabled by default
 #  - 'collector.ksmd' # disabled by default
 #  - 'collector.logind' # disabled by default
-#  - 'collector.megacli' # disabled by default
 #  - 'collector.meminfo_numa' # disabled by default
 #  - 'collector.mountstats' # disabled by default
-#  - 'collector.nfs' # disabled by default
 #  - 'collector.ntp' # disabled by default
 #  - 'collector.ntp.server-is-local' # disabled by default
 #  - 'collector.qdisc' # disabled by default
 #  - 'collector.runit' # disabled by default
+#  - 'collector.sockstat' # disabled by default
 #  - 'collector.supervisord' # disabled by default
 #  - 'collector.systemd' # disabled by default
 #  - 'collector.systemd.private' # disabled by default
 #  - 'collector.tcpstat' # disabled by default
+#  - 'collector.textfile' # disabled by default
 
 # Alertmanager
 # https://github.com/prometheus/alertmanager
