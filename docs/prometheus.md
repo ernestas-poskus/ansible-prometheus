@@ -98,6 +98,24 @@ prometheus_query__lookback_delta: '5m'
 prometheus_query__timeout: '2m'
 # Maximum time a query may take before being aborted.
 
+prometheus_rules__alert__for_grace_period: '10m'
+# Minimum duration between alert and restored
+# 'for' state. This is maintained only for alerts
+# with configured 'for' time greater than grace
+# period.
+prometheus_rules__alert__for_outage_tolerance: '1h'
+# Max time to tolerate prometheus outage for
+# restoring 'for' state of alert.
+prometheus_rules__alert__resend_delay: '1m'
+# Minimum amount of time to wait before resending
+# an alert to Alertmanager.
+prometheus_storage__remote__flush_deadline:
+# How long to wait flushing sample on shutdown or
+# config reload.
+prometheus_storage__remote__read_sample_limit: '5e7'
+# Maximum overall number of samples to return via
+# the remote read interface, in a single query. 0 means no limit.
+
 prometheus_query__max_concurrency: 20
 # Maximum number of queries executed concurrently.
 
@@ -110,4 +128,5 @@ prometheus____enabled_flags: []
 #  - 'storage.tsdb.no-lockfile' # disabled by default
 #  - 'web.enable-admin-api' # disabled by default
 #  - 'web.enable-lifecycle' # disabled by default
+#  - 'web.external-url.' # disabled by default
 ```

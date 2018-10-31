@@ -62,7 +62,7 @@ prometheus_snmp_exporter_config_dir: "{{ prometheus_config_dir }}/snmpexporter"
 prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxexporter"
 
 # Prometheus
-prometheus_version: '2.2.1'
+prometheus_version: '2.4.3'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
