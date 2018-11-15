@@ -24,7 +24,7 @@ prometheus_snmp_exporter_config_dir: "{{ prometheus_config_dir }}/snmpexporter"
 prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxexporter"
 
 # Prometheus
-prometheus_version: '2.4.3'
+prometheus_version: '2.5.0'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
@@ -144,21 +144,36 @@ prometheus_rules__alert__for_grace_period: '10m'
 # 'for' state. This is maintained only for alerts
 # with configured 'for' time greater than grace
 # period.
+
 prometheus_rules__alert__for_outage_tolerance: '1h'
 # Max time to tolerate prometheus outage for
 # restoring 'for' state of alert.
+
 prometheus_rules__alert__resend_delay: '1m'
 # Minimum amount of time to wait before resending
 # an alert to Alertmanager.
+
 prometheus_storage__remote__flush_deadline:
 # How long to wait flushing sample on shutdown or
 # config reload.
+
+prometheus_storage__remote__read_concurrent_limit: 10
+# Maximum number of concurrent remote read calls.
+# 0 means no limit.
+
 prometheus_storage__remote__read_sample_limit: '5e7'
 # Maximum overall number of samples to return via
 # the remote read interface, in a single query. 0 means no limit.
 
 prometheus_query__max_concurrency: 20
 # Maximum number of queries executed concurrently.
+
+prometheus_query__max_samples: 50000000
+# Maximum number of samples a single query can
+# load into memory. Note that queries will fail
+# if they would load more samples than this into
+# memory, so this also limits the number of
+# samples a query can return.
 
 prometheus_log__level: 'info'
 # Only log messages with the given severity or above. Valid levels:

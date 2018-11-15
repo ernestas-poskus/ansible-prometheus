@@ -40,6 +40,9 @@ config reload.
 Maximum overall number of samples to return via
 the remote read interface, in a single query. 0
 means no limit.
+--storage.remote.read-concurrent-limit=10
+Maximum number of concurrent remote read calls.
+0 means no limit.
 --rules.alert.for-outage-tolerance=1h
 Max time to tolerate prometheus outage for
 restoring 'for' state of alert.
@@ -56,11 +59,22 @@ The capacity of the queue for pending
 Alertmanager notifications.
 --alertmanager.timeout=10s
 Timeout for sending alerts to Alertmanager.
---query.lookback-delta=5m  The delta difference allowed for retrieving metrics during expression evaluations.
---query.timeout=2m         Maximum time a query may take before being aborted.
+--query.lookback-delta=5m  The delta difference allowed for retrieving
+metrics during expression evaluations.
+--query.timeout=2m         Maximum time a query may take before being
+aborted.
 --query.max-concurrency=20
-Maximum number of queries executed concurrently.
---log.level=info           Only log messages with the given severity or above. One of: [debug, info, warn, error]
+Maximum number of queries executed
+concurrently.
+--query.max-samples=50000000
+Maximum number of samples a single query can
+load into memory. Note that queries will fail
+if they would load more samples than this into
+memory, so this also limits the number of
+samples a query can return.
+--log.level=info           Only log messages with the given severity or
+above. One of: [debug, info, warn, error]
+
 eos
 
 PREFIX = 'prometheus'
