@@ -19,3 +19,11 @@
 {% if prometheus_config_alerting is not none and prometheus_config_alerting | length > 0 %}
 {{ {'alerting': prometheus_config_alerting} | to_nice_yaml }}
 {% endif %}
+
+{% if prometheus_config_remote_write is not none and prometheus_config_remote_write | length > 0 %}
+{{ {'remote_write': prometheus_config_remote_write} | to_nice_yaml }}
+{% endif %}
+
+{% if prometheus_config_remote_read is not none and prometheus_config_remote_read | length > 0 %}
+{{ {'remote_read': prometheus_config_remote_read} | to_nice_yaml }}
+{% endif %}
