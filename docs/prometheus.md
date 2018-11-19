@@ -47,6 +47,14 @@ prometheus_config_alerting:
     - targets:
       - localhost:9093
 
+# Allow Prometheus to write in remote storage
+prometheus_config_remote_write:
+  # - url: 'http://localhost:8086/api/v1/prom/write?db=prometheus'
+
+# Allow Prometheus to read from remote storage
+prometheus_config_remote_read:
+  # - url: 'http://localhost:8086/api/v1/prom/read?db=prometheus'
+
 prometheus_config__file: "{{ prometheus_config_dir }}/prometheus.yml"
 # Prometheus configuration file name.
 
