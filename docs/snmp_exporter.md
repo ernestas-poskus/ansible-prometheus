@@ -15,4 +15,8 @@ prometheus_snmp_exporter_log__level: 'info'
 
 # Set the log target and format. Example: "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
 prometheus_snmp_exporter_log__format: 'logger:stderr'
+
+# SNMP exporter flags
+prometheus_snmp_exporter____enabled_flags: []
+#  - 'snmp.wrap-large-counters' # disabled by default
 ```
