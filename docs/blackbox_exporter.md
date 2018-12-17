@@ -7,6 +7,9 @@
 prometheus_black_box_config__file: "{{ prometheus_blackbox_exporter_config_dir }}/blackbox.yml"
 # Blackbox exporter configuration file.
 
+prometheus_black_box_history__limit: 100
+# The maximum amount of items to keep in the history.
+
 prometheus_black_box_web__listen_address: ':9115'
 # The address to listen on for HTTP requests.
 
