@@ -72,7 +72,7 @@ prometheus_node_exporter_version: '0.16.0'
 prometheus_alert_manager_version: '0.15.3'
 
 # Pushgateway
-prometheus_push_gateway_version: '0.6.0'
+prometheus_push_gateway_version: '0.7.0'
 
 # SNMP exporter
 prometheus_snmp_exporter_version: '0.13.0'
