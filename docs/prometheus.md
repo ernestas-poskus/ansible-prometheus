@@ -58,6 +58,9 @@ prometheus_config_remote_read:
 prometheus_config__file: "{{ prometheus_config_dir }}/prometheus.yml"
 # Prometheus configuration file name.
 
+prometheus_log__format: "logfmt"
+# Output format of log messages. One of: [logfmt,json]
+
 prometheus_web__listen_address: ":9090"
 # Address to listen on for the web interface, API, and telemetry.
 
@@ -66,6 +69,9 @@ prometheus_web__read_timeout: '30s'
 
 prometheus_web__max_connections: 512
 # Maximum number of simultaneous connections.
+
+prometheus_web__page_title: "Prometheus Time Series Collection and Processing Server"
+# Document title of Prometheus instance.
 
 prometheus_web__external_url:
 # The URL under which Prometheus is externally reachable (for
