@@ -8,6 +8,7 @@
     group: "{{ prometheus_group }}"
     copy: no
     creates: "{{ prometheus_install_dir }}/{{ prometheus_node_exporter_archive }}"
+  ignore_errors: "{{ansible_check_mode}}"
 
 - name: Install Prometheus node exporter systemd service
   template:

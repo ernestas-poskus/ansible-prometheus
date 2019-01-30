@@ -22,6 +22,7 @@
     group: "{{ prometheus_group }}"
     copy: no
     creates: "{{ prometheus_install_dir }}/{{ prometheus_alert_manager_archive }}"
+  ignore_errors: "{{ansible_check_mode}}"
 
 - name: Copy alert manager config
   template:
