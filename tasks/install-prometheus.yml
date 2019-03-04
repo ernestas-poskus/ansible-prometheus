@@ -21,6 +21,7 @@
     group: "{{ prometheus_group }}"
     copy: no
     creates: "{{ prometheus_install_dir }}/{{ prometheus_archive }}"
+  ignore_errors: "{{ansible_check_mode}}"
 
 - name: Copy Prometheus config
   template:
