@@ -37,7 +37,7 @@ prometheus_alert_manager_version: '0.15.3'
 prometheus_push_gateway_version: '0.7.0'
 
 # SNMP exporter
-prometheus_snmp_exporter_version: '0.14.0'
+prometheus_snmp_exporter_version: '0.15.0'
 
 # Blackbox exporter
 prometheus_blackbox_exporter_version: '0.13.0'

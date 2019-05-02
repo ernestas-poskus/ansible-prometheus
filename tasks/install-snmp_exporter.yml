@@ -27,6 +27,7 @@
     dest: "{{ prometheus_snmp_exporter_config_dir }}/snmp.yml"
     owner: "{{ prometheus_owner }}"
     group: "{{ prometheus_group }}"
+    validate: "{{ prometheus_install_dir }}/{{ prometheus_snmp_exporter_archive }}/snmp_exporter --dry-run --config.file %s"
   notify:
     restart snmpexporter
 
