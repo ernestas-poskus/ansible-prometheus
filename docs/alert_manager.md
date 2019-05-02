@@ -80,6 +80,8 @@ prometheus_alert_manager_config__file: "{{ prometheus_alert_manager_config_dir }
 # Alertmanager configuration file name. (default "alertmanager.yml")
 prometheus_alert_manager_data__retention: '120h0m0s'
 # How long to keep data for. (default 120h0m0s)
+prometheus_alert_manager_log__format: 'logfmt'
+# Output format of log messages. One of: [logfmt,json]
 prometheus_alert_manager_log__level: 'info'
 # Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]. (default info)
 prometheus_alert_manager_storage__path: "{{ prometheus_alert_manager_data_dir }}"
