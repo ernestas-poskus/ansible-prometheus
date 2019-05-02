@@ -9,3 +9,4 @@ prometheus_push_gateway_service_config:
   - ['web.listen-address', "{{ prometheus_push_gateway_web__listen_address }}"]
   - ['web.route-prefix', "{{ prometheus_push_gateway_web__route_prefix }}"]
   - ['web.telemetry-path', "{{ prometheus_push_gateway_web__telemetry_path }}"]
+  - ['web.external-url', "{{ prometheus_push_gateway_web__external_url }}"]

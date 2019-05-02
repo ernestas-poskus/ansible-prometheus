@@ -18,4 +18,6 @@ prometheus_push_gateway_web__route_prefix:
 # Prefix for the internal routes of web endpoints.
 prometheus_push_gateway_web__telemetry_path: '/metrics'
 # Path under which to expose metrics. (default "/metrics")
+prometheus_push_gateway_web__external_url:
+# The URL under which Pushgateway is externally reachable.
 ```
