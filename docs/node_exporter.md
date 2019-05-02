@@ -6,9 +6,11 @@
 
 prometheus_collector__diskstats__ignored_devices: "^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$"
 # Regexp of devices to ignore for diskstats.
-prometheus_collector__filesystem__ignored_fs_types: '^(sys|proc|auto)fs$'
+prometheus_collector__filesystem__ignored_fs_types: '^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$'
 # Regexp of filesystem types to ignore for filesystem collector.
-prometheus_collector__filesystem__ignored_mount_points: '^/(sys|proc|dev)($|/)'
+prometheus_collector__netclass__ignored_devices: "^$"
+# Regexp of net devices to ignore for netclass collector.
+prometheus_collector__filesystem__ignored_mount_points: '^/(dev|proc|sys|var/lib/docker/.+)($|/)'
 # Regexp of mount points to ignore for filesystem
 prometheus_collector__netdev__ignored_devices: "^$"
 # Regexp of net devices to ignore for netdev
@@ -32,6 +34,8 @@ prometheus_collector__supervisord__url:
 # XML RPC endpoint (default "http://localhost:9001/RPC2")
 prometheus_collector__path__sysfs:
 # sysfs mountpoint. (default "/sys")
+prometheus_collector__path__rootfs: '/'
+# rootfs mountpoint.
 prometheus_collector__systemd__unit_blacklist:
 # Regexp of systemd units to blacklist. Units must both match whitelist and not match blacklist to be included.
 prometheus_collector__systemd__unit_whitelist: '.+'
@@ -76,7 +80,6 @@ prometheus_collector_____enabled_collectors:
   - 'collector.timex'
   - 'collector.uname'
   - 'collector.vmstat'
-  - 'collector.wifi'
   - 'collector.xfs'
   - 'collector.zfs'
 #  - 'collector.buddyinfo' # disabled by default
@@ -90,8 +93,10 @@ prometheus_collector_____enabled_collectors:
 #  - 'collector.logind' # disabled by default
 #  - 'collector.meminfo_numa' # disabled by default
 #  - 'collector.mountstats' # disabled by default
+#  - 'collector.netclass' # disabled by default
 #  - 'collector.ntp' # disabled by default
 #  - 'collector.ntp.server-is-local' # disabled by default
+#  - 'collector.processes' # disabled by default
 #  - 'collector.qdisc' # disabled by default
 #  - 'collector.runit' # disabled by default
 #  - 'collector.sockstat' # disabled by default
@@ -100,4 +105,5 @@ prometheus_collector_____enabled_collectors:
 #  - 'collector.systemd.private' # disabled by default
 #  - 'collector.tcpstat' # disabled by default
 #  - 'collector.textfile' # disabled by default
+#  - 'collector.wifi' # disabled by default
 ```

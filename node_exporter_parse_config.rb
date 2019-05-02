@@ -1,12 +1,15 @@
 input = <<eos
 --collector.diskstats.ignored-devices="^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$"
 Regexp of devices to ignore for diskstats.
---collector.filesystem.ignored-mount-points="^/(dev|proc|sys|var/lib/docker)($|/)"
+--collector.filesystem.ignored-mount-points="^/(dev|proc|sys|var/lib/docker/.+)($|/)"
 Regexp of mount points to ignore for filesystem
 collector.
---collector.filesystem.ignored-fs-types="^(autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs)$"
+--collector.filesystem.ignored-fs-types="^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$"
 Regexp of filesystem types to ignore for
 filesystem collector.
+--collector.netclass.ignored-devices="^$"
+Regexp of net devices to ignore for netclass
+collector.
 --collector.netdev.ignored-devices="^$"
 Regexp of net devices to ignore for netdev
 collector.
@@ -28,6 +31,7 @@ Offset between local clock and local ntpd time
 to tolerate
 --path.procfs="/proc"     procfs mountpoint.
 --path.sysfs="/sys"       sysfs mountpoint.
+--path.rootfs="/"         rootfs mountpoint.
 --collector.qdisc.fixtures=""
 test fixtures to use for qdisc collector
 end-to-end testing
@@ -83,11 +87,15 @@ disabled).
 disabled).
 --collector.mountstats    Enable the mountstats collector (default:
 disabled).
+--collector.netclass      Enable the netclass collector (default:
+enabled).
 --collector.netdev        Enable the netdev collector (default: enabled).
 --collector.netstat       Enable the netstat collector (default: enabled).
 --collector.nfs           Enable the nfs collector (default: enabled).
 --collector.nfsd          Enable the nfsd collector (default: enabled).
 --collector.ntp           Enable the ntp collector (default: disabled).
+--collector.processes     Enable the processes collector (default:
+disabled).
 --collector.qdisc         Enable the qdisc collector (default: disabled).
 --collector.runit         Enable the runit collector (default: disabled).
 --collector.sockstat      Enable the sockstat collector (default:
@@ -102,12 +110,12 @@ disabled).
 --collector.textfile      Enable the textfile collector (default:
 enabled).
 --collector.time          Enable the time collector (default: enabled).
+--collector.timex         Enable the timex collector (default: enabled).
 --collector.uname         Enable the uname collector (default: enabled).
 --collector.vmstat        Enable the vmstat collector (default: enabled).
---collector.wifi          Enable the wifi collector (default: enabled).
+--collector.wifi          Enable the wifi collector (default: disabled).
 --collector.xfs           Enable the xfs collector (default: enabled).
 --collector.zfs           Enable the zfs collector (default: enabled).
---collector.timex         Enable the timex collector (default: enabled).
 --web.listen-address=":9100"
 Address on which to expose metrics and web
 interface.
