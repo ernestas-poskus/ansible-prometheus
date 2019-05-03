@@ -24,7 +24,7 @@ prometheus_snmp_exporter_config_dir: "{{ prometheus_config_dir }}/snmpexporter"
 prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxexporter"
 
 # Prometheus
-prometheus_version: '2.5.0'
+prometheus_version: '2.9.2'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
@@ -99,6 +99,9 @@ prometheus_config_remote_read:
 prometheus_config__file: "{{ prometheus_config_dir }}/prometheus.yml"
 # Prometheus configuration file name.
 
+prometheus_log__format: "logfmt"
+# Output format of log messages. One of: [logfmt, json]
+
 prometheus_web__listen_address: ":9090"
 # Address to listen on for the web interface, API, and telemetry.
 
@@ -107,6 +110,9 @@ prometheus_web__read_timeout: '30s'
 
 prometheus_web__max_connections: 512
 # Maximum number of simultaneous connections.
+
+prometheus_web__page_title:
+# Document title of Prometheus instance.
 
 prometheus_web__external_url:
 # The URL under which Prometheus is externally reachable (for
@@ -126,6 +132,9 @@ prometheus_web__user_assets:
 prometheus_web__console__templates: 'consoles'
 # Path to the console template directory, available at /consoles.
 
+prometheus_web__cors__origin: ".*"
+# Regex for CORS origin. It is fully anchored. Eg. 'https?://(domain1|domain2)\.com'
+
 prometheus_web__console__libraries: 'console_libraries'
 # Path to the console library directory.
 
@@ -133,6 +142,15 @@ prometheus_storage__tsdb__path: "{{ prometheus_data_dir }}"
 # Base path for metrics storage.
 
 prometheus_storage__tsdb__retention: '15d'
+# How long to retain samples in the storage.
+
+prometheus_storage__tsdb__retention__size:
+# [EXPERIMENTAL] Maximum number of bytes that can
+# be stored for blocks. Units supported: KB, MB,
+# GB, TB, PB. This flag is experimental and can
+# be changed in future releases.
+
+prometheus_storage__tsdb__retention__time: "{{ prometheus_storage__tsdb__retention }}"
 # How long to retain samples in the storage.
 
 prometheus_alertmanager__notification_queue_capacity: 10000
