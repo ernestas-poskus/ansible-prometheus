@@ -15,6 +15,7 @@ User={{prometheus_owner}}
 Group={{prometheus_group}}
 StandardOutput=journal
 StandardError=journal
+WorkingDirectory={{ prometheus_install_dir }}/{{ prometheus_archive }}
 
 [Install]
 WantedBy=multi-user.target
