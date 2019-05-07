@@ -1,4 +1,5 @@
-- include_vars: 'snmpexporter.yml'
+- name: Include snmp exporter variables
+  include_vars: 'snmpexporter.yml'
 
 - name: Creating snmp exporter directories
   file:
@@ -19,7 +20,7 @@
     group: "{{ prometheus_group }}"
     copy: no
     creates: "{{ prometheus_install_dir }}/{{ prometheus_snmp_exporter_archive }}"
-  ignore_errors: "{{ansible_check_mode}}"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Copy snmp exporter config
   copy:

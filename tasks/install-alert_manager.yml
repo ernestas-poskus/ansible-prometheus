@@ -1,4 +1,5 @@
-- include_vars: 'alertmanager.yml'
+- name: Include alert manager variables
+  include_vars: 'alertmanager.yml'
 
 - name: Creating alert manager directories
   file:
@@ -22,7 +23,7 @@
     group: "{{ prometheus_group }}"
     copy: no
     creates: "{{ prometheus_install_dir }}/{{ prometheus_alert_manager_archive }}"
-  ignore_errors: "{{ansible_check_mode}}"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Copy alert manager config
   template:
@@ -30,7 +31,7 @@
     dest: "{{ prometheus_alert_manager_config_dir }}/alertmanager.yml"
     owner: "{{ prometheus_owner }}"
     group: "{{ prometheus_group }}"
-    validate: "{{ prometheus_install_dir }}/{{ prometheus_alert_manager_archive }}/amtool check-config %s --alertmanager.url={% if prometheus_alert_manager_web__external_url is not none %}{{ prometheus_alert_manager_web__external_url }}{% else %}'http://127.0.0.1:9093'{% endif %}"
+    validate: "{{ prometheus_install_dir }}/{{ prometheus_alert_manager_archive }}/amtool check-config %s --alertmanager.url={{ _alert_manager_validate_url }}"
   notify:
     restart alertmanager
 

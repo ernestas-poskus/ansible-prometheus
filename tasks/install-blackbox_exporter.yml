@@ -1,4 +1,5 @@
-- include_vars: 'blackboxexporter.yml'
+- name: Include blackbox exporter variables
+  include_vars: 'blackboxexporter.yml'
 
 - name: Creating blackbox exporter directories
   file:
@@ -19,7 +20,7 @@
     group: "{{ prometheus_group }}"
     copy: no
     creates: "{{ prometheus_install_dir }}/{{ prometheus_blackbox_exporter_archive }}"
-  ignore_errors: "{{ansible_check_mode}}"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Copy blackbox exporter config
   template:
@@ -35,7 +36,7 @@
     path: "{{ prometheus_install_dir }}/{{ prometheus_blackbox_exporter_archive }}/blackbox_exporter"
     capability: cap_net_raw+ep
     state: present
-  ignore_errors: "{{ansible_check_mode}}"
+  ignore_errors: "{{ ansible_check_mode }}"
   notify:
     - reload blackboxexporter
 

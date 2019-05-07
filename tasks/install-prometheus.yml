@@ -1,4 +1,5 @@
-- include_vars: 'prometheus.yml'
+- name: Include prometheus variables
+  include_vars: 'prometheus.yml'
 
 - name: Creating Prometheus directories
   file:
@@ -21,7 +22,7 @@
     group: "{{ prometheus_group }}"
     copy: no
     creates: "{{ prometheus_install_dir }}/{{ prometheus_archive }}"
-  ignore_errors: "{{ansible_check_mode}}"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Copy Prometheus config
   template:
