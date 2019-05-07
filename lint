@@ -1,0 +1,13 @@
+#!/bin/bash
+path=${1:-.}
+
+python_path="$(python -m site --user-base)/bin"
+echo "Python pip bin's path: $python_path"
+
+pip install yamllint --user
+pip install ansible-lint --user
+
+yamllint_file="/tmp/yamllint.yaml"
+
+curl https://raw.githubusercontent.com/ansible/galaxy/devel/galaxy/importer/linters/yamllint.yaml -o "$yamllint_file"
+"$python_path/yamllint" -s -c "$yamllint_file" "$path" && "$python_path/ansible-lint" "$path"
