@@ -81,17 +81,17 @@ prometheus_snmp_exporter_version: '0.15.0'
 prometheus_blackbox_exporter_version: '0.14.0'
 ```
 
-[DOCS: Prometheus variables](/docs/prometheus.md)
+[DOCS: Prometheus variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/prometheus.md)
 
-[DOCS: Node exporter variables](/docs/node_exporter.md)
+[DOCS: Node exporter variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/node_exporter.md)
 
-[DOCS: Alert manager variables](/docs/alert_manager.md)
+[DOCS: Alert manager variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/alert_manager.md)
 
-[DOCS: Pushgateway variables](/docs/push_gateway.md)
+[DOCS: Pushgateway variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/push_gateway.md)
 
-[DOCS: SNMP exporter variables](/docs/snmp_exporter.md)
+[DOCS: SNMP exporter variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/snmp_exporter.md)
 
-[DOCS: Blackbox exporter variables](/docs/blackbox_exporter.md)
+[DOCS: Blackbox exporter variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/blackbox_exporter.md)
 
 Dependencies
 ------------
