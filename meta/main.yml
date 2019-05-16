@@ -1,7 +1,7 @@
 galaxy_info:
   author: Ernestas Poskus
   description: Ansible playbook for managing Prometheus monitoring system
-  company: Linkosmos
+  company: None
 
   license: BSD
 
@@ -17,6 +17,15 @@ galaxy_info:
 
   galaxy_tags:
     - prometheus
+    - alerting
     - monitoring
+    - alert
+    - manager
+    - node
+    - blackbox
+    - snmp
+    - exporter
+    - push
+    - gateway
 
 dependencies: []
