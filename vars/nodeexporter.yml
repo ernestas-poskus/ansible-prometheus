@@ -26,5 +26,6 @@ prometheus_node_exporter_service_config:
   - ['collector.wifi.fixtures', "{{ prometheus_collector__wifi__fixtures }}"]
   - ['web.listen-address', "{{ prometheus_collector__web__listen_address }}"]
   - ['web.telemetry-path', "{{ prometheus_collector__web__telemetry_path }}"]
+  - ['web.max-requests', "{{ prometheus_collector__web__max_requests }}"]
   - ['log.level', "{{ prometheus_collector__log__level }}"]
   - ['log.format', "{{ prometheus_collector__log__format }}"]

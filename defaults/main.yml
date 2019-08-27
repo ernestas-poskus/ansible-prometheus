@@ -28,7 +28,7 @@ prometheus_version: '2.9.2'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
-prometheus_node_exporter_version: '0.17.0'
+prometheus_node_exporter_version: '0.18.1'
 
 # Alert manager
 prometheus_alert_manager_version: '0.16.2'
@@ -225,7 +225,7 @@ prometheus_collector__filesystem__ignored_mount_points: '^/(dev|proc|sys|var/lib
 # Regexp of mount points to ignore for filesystem
 prometheus_collector__netdev__ignored_devices: "^$"
 # Regexp of net devices to ignore for netdev
-prometheus_collector__netstat__fields: "^(.*_(InErrors|InErrs)|Ip_Forwarding|Ip(6|Ext)_(InOctets|OutOctets)|Icmp6?_(InMsgs|OutMsgs)|TcpExt_(Listen.*|Syncookies.*)|Tcp_(ActiveOpens|PassiveOpens|RetransSegs|CurrEstab)|Udp6?_(InDatagrams|OutDatagrams|NoPorts))$"
+prometheus_collector__netstat__fields: "^(.*_(InErrors|InErrs)|Ip_Forwarding|Ip(6|Ext)_(InOctets|OutOctets)|Icmp6?_(InMsgs|OutMsgs)|TcpExt_(Listen.*|Syncookies.*|TCPSynRetrans)|Tcp_(ActiveOpens|InSegs|OutSegs|PassiveOpens|RetransSegs|CurrEstab)|Udp6?_(InDatagrams|OutDatagrams|NoPorts))$"
 # Regexp of fields to return for netstat collector.
 prometheus_collector__ntp__protocol_version: 4
 # NTP protocol version (default 4)
@@ -247,7 +247,7 @@ prometheus_collector__path__sysfs:
 # sysfs mountpoint. (default "/sys")
 prometheus_collector__path__rootfs: '/'
 # rootfs mountpoint.
-prometheus_collector__systemd__unit_blacklist:
+prometheus_collector__systemd__unit_blacklist: ".+\\.(automount|device|mount|scope|slice)"
 # Regexp of systemd units to blacklist. Units must both match whitelist and not match blacklist to be included.
 prometheus_collector__systemd__unit_whitelist: '.+'
 # Regexp of systemd units to whitelist. Units must both match whitelist and not match blacklist to be included. (default ".+")
@@ -257,6 +257,8 @@ prometheus_collector__vmstat__fields: "^(oom_kill|pgpg|pswp|pg.*fault).*"
 # Regexp of fields to return for vmstat collector.
 prometheus_collector__log__format:
 # If set use a syslog logger or JSON logging. Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
+prometheus_collector__web__max_requests: 40
+# Maximum number of parallel scrape requests. Use 0 to disable.
 prometheus_collector__log__level: 'info'
 # Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]. (default info)
 prometheus_collector__web__listen_address: ':9100'
@@ -274,6 +276,7 @@ prometheus_collector_____enabled_collectors:
   - 'collector.bcache'
   - 'collector.bonding'
   - 'collector.cpu'
+  - 'collector.cpufreq'
   - 'collector.edac'
   - 'collector.entropy'
   - 'collector.filefd'
@@ -307,16 +310,22 @@ prometheus_collector_____enabled_collectors:
 #  - 'collector.netclass' # disabled by default
 #  - 'collector.ntp' # disabled by default
 #  - 'collector.ntp.server-is-local' # disabled by default
+#  - 'collector.perf' # disabled by default
+#  - 'collector.pressure' # disabled by default
 #  - 'collector.processes' # disabled by default
 #  - 'collector.qdisc' # disabled by default
 #  - 'collector.runit' # disabled by default
 #  - 'collector.sockstat' # disabled by default
 #  - 'collector.supervisord' # disabled by default
 #  - 'collector.systemd' # disabled by default
+#  - 'collector.systemd.enable-restarts-metrics' # disabled by default
+#  - 'collector.systemd.enable-start-time-metrics' # disabled by default
+#  - 'collector.systemd.enable-task-metrics' # disabled by default
 #  - 'collector.systemd.private' # disabled by default
 #  - 'collector.tcpstat' # disabled by default
 #  - 'collector.textfile' # disabled by default
 #  - 'collector.wifi' # disabled by default
+#  - 'web.disable-exporter-metrics' # disabled by default
 
 # Alertmanager
 # https://github.com/prometheus/alertmanager

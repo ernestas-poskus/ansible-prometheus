@@ -13,7 +13,7 @@ collector.
 --collector.netdev.ignored-devices="^$"
 Regexp of net devices to ignore for netdev
 collector.
---collector.netstat.fields="^(.*_(InErrors|InErrs)|Ip_Forwarding|Ip(6|Ext)_(InOctets|OutOctets)|Icmp6?_(InMsgs|OutMsgs)|TcpExt_(Listen.*|Syncookies.*)|Tcp_(ActiveOpens|PassiveOpens|RetransSegs|CurrEstab)|Udp6?_(InDatagrams|OutDatagrams|NoPorts))$"
+--collector.netstat.fields="^(.*_(InErrors|InErrs)|Ip_Forwarding|Ip(6|Ext)_(InOctets|OutOctets)|Icmp6?_(InMsgs|OutMsgs)|TcpExt_(Listen.*|Syncookies.*|TCPSynRetrans)|Tcp_(ActiveOpens|InSegs|OutSegs|PassiveOpens|RetransSegs|CurrEstab)|Udp6?_(InDatagrams|OutDatagrams|NoPorts))$"
 Regexp of fields to return for netstat
 collector.
 --collector.ntp.server="127.0.0.1"
@@ -43,13 +43,22 @@ XML RPC endpoint.
 Regexp of systemd units to whitelist. Units must
 both match whitelist and not match blacklist to
 be included.
---collector.systemd.unit-blacklist=".+\\.scope"
+--collector.systemd.unit-blacklist=".+\\.(automount|device|mount|scope|slice)"
 Regexp of systemd units to blacklist. Units must
 both match whitelist and not match blacklist to
 be included.
 --collector.systemd.private
 Establish a private, direct connection to
 systemd without dbus.
+--collector.systemd.enable-task-metrics
+Enables service unit tasks metrics
+unit_tasks_current and unit_tasks_max
+--collector.systemd.enable-restarts-metrics
+Enables service unit metric
+service_restart_total
+--collector.systemd.enable-start-time-metrics
+Enables service unit metric
+unit_start_time_seconds
 --collector.textfile.directory=""
 Directory to read text files with metrics from.
 --collector.vmstat.fields="^(oom_kill|pgpg|pswp|pg.*fault).*"
@@ -64,6 +73,7 @@ disabled).
 --collector.conntrack     Enable the conntrack collector (default:
 enabled).
 --collector.cpu           Enable the cpu collector (default: enabled).
+--collector.cpufreq       Enable the cpufreq collector (default: enabled).
 --collector.diskstats     Enable the diskstats collector (default:
 enabled).
 --collector.drbd          Enable the drbd collector (default: disabled).
@@ -94,6 +104,9 @@ enabled).
 --collector.nfs           Enable the nfs collector (default: enabled).
 --collector.nfsd          Enable the nfsd collector (default: enabled).
 --collector.ntp           Enable the ntp collector (default: disabled).
+--collector.perf          Enable the perf collector (default: disabled).
+--collector.pressure      Enable the pressure collector (default:
+enabled).
 --collector.processes     Enable the processes collector (default:
 disabled).
 --collector.qdisc         Enable the qdisc collector (default: disabled).
@@ -121,6 +134,11 @@ Address on which to expose metrics and web
 interface.
 --web.telemetry-path="/metrics"
 Path under which to expose metrics.
+--web.disable-exporter-metrics
+Exclude metrics about the exporter itself
+(promhttp_*, process_*, go_*).
+--web.max-requests=40
+Maximum number of parallel scrape requests. Use 0 to disable.
 --log.level="info"        Only log messages with the given severity or
 above. Valid levels: [debug, info, warn, error,
 fatal]
