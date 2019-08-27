@@ -69,7 +69,7 @@ prometheus_platform_architecture: 'linux-amd64'
 prometheus_node_exporter_version: '0.17.0'
 
 # Alert manager
-prometheus_alert_manager_version: '0.16.2'
+prometheus_alert_manager_version: '0.18.0'
 
 # Pushgateway
 prometheus_push_gateway_version: '0.8.0'

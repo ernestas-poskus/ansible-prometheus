@@ -24,5 +24,7 @@ prometheus_alert_manager_service_config:
   - ['log.level', "{{ prometheus_alert_manager_log__level }}"]
   - ['storage.path', "{{ prometheus_alert_manager_storage__path }}"]
   - ['web.external-url', "{{ prometheus_alert_manager_web__external_url }}"]
+  - ['web.get-concurrency', "{{ prometheus_alert_manager_web__get_concurrency }}"]
   - ['web.listen-address', "{{ prometheus_alert_manager_web__listen_address }}"]
   - ['web.route-prefix', "{{ prometheus_alert_manager_web__route_prefix }}"]
+  - ['web.timeout', "{{ prometheus_alert_manager_web__timeout }}"]

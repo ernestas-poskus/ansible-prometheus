@@ -92,8 +92,14 @@ prometheus_alert_manager_web__external_url:
 # Used for generating relative and absolute links back to Alertmanager itself.
 # If the URL has a path portion, it will be used to prefix all HTTP endpoints served by Alertmanager.
 # If omitted, relevant URL components will be derived automatically.
+prometheus_alert_manager_web__get_concurrency:
+# Maximum number of GET requests processed
+# concurrently. If negative or zero, the limit is
+# GOMAXPROC or 8, whichever is larger.
 prometheus_alert_manager_web__listen_address: ':9093'
 # Address to listen on for the web:interface and API. (default ":9093")
 prometheus_alert_manager_web__route_prefix:
 # Prefix for the internal routes of web endpoints. Defaults to path of -web.external-url.
+prometheus_alert_manager_web__timeout: 0
+# Timeout for HTTP requests. If negative or zero,no timeout is set.
 ```
