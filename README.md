@@ -66,7 +66,7 @@ prometheus_version: '2.9.2'
 prometheus_platform_architecture: 'linux-amd64'
 
 # Node exporter
-prometheus_node_exporter_version: '0.17.0'
+prometheus_node_exporter_version: '0.18.1'
 
 # Alert manager
 prometheus_alert_manager_version: '0.16.2'
