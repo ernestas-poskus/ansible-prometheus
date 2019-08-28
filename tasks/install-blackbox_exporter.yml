@@ -28,6 +28,7 @@
     dest: "{{ prometheus_blackbox_exporter_config_dir }}/blackbox.yml"
     owner: "{{ prometheus_owner }}"
     group: "{{ prometheus_group }}"
+    validate: "{{ prometheus_install_dir }}/{{ prometheus_blackbox_exporter_archive }}/blackbox_exporter --config.check --config.file %s"
   notify:
     - reload blackboxexporter
 
