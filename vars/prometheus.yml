@@ -16,6 +16,7 @@ prometheus_service_config:
   - ['rules.alert.resend-delay', "{{ prometheus_rules__alert__resend_delay }}"]
   - ['storage.remote.flush-deadline', "{{ prometheus_storage__remote__flush_deadline }}"]
   - ['storage.remote.read-concurrent-limit', "{{ prometheus_storage__remote__read_concurrent_limit }}"]
+  - ['storage.remote.read-max-bytes-in-frame', "{{ prometheus_storage__remote__read_max_bytes_in_frame }}"]
   - ['storage.remote.read-sample-limit', "{{ prometheus_storage__remote__read_sample_limit }}"]
   - ['storage.tsdb.path', "{{ prometheus_storage__tsdb__path }}"]
   - ['storage.tsdb.retention.size', "{{ prometheus_storage__tsdb__retention__size }}"]

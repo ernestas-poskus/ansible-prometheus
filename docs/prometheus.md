@@ -146,6 +146,13 @@ prometheus_storage__remote__read_concurrent_limit: 10
 # Maximum number of concurrent remote read calls.
 # 0 means no limit.
 
+prometheus_storage__remote__read_max_bytes_in_frame: 1048576
+# Maximum number of bytes in a single frame for
+# streaming remote read response types before
+# marshalling. Note that client might have limit
+# on frame size as well. 1MB as recommended by
+# protobuf by default.
+
 prometheus_storage__remote__read_sample_limit: '5e7'
 # Maximum overall number of samples to return via
 # the remote read interface, in a single query. 0 means no limit.
@@ -166,7 +173,9 @@ prometheus_log__level: 'info'
 
 # Prometheus flags
 prometheus____enabled_flags: []
+#  - 'storage.tsdb.allow-overlapping-blocks' # disabled by default
 #  - 'storage.tsdb.no-lockfile' # disabled by default
+#  - 'storage.tsdb.wal-compression' # disabled by default
 #  - 'web.enable-admin-api' # disabled by default
 #  - 'web.enable-lifecycle' # disabled by default
 #  - 'web.external-url.' # disabled by default
