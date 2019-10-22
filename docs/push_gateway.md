@@ -20,4 +20,7 @@ prometheus_push_gateway_web__telemetry_path: '/metrics'
 # Path under which to expose metrics. (default "/metrics")
 prometheus_push_gateway_web__external_url:
 # The URL under which Pushgateway is externally reachable.
+prometheus_push_gateway____enabled_flags: []
+#  - 'web.enable-admin-api' # disabled by default
+#  - 'web.enable-lifecycle' # disabled by default
 ```
