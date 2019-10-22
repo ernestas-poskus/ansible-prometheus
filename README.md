@@ -78,7 +78,7 @@ prometheus_push_gateway_version: '0.9.1'
 prometheus_snmp_exporter_version: '0.15.0'
 
 # Blackbox exporter
-prometheus_blackbox_exporter_version: '0.14.0'
+prometheus_blackbox_exporter_version: '0.15.1'
 ```
 
 [DOCS: Prometheus variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/prometheus.md)

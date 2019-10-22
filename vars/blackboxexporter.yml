@@ -4,6 +4,9 @@
 prometheus_blackbox_exporter_service_config:
   - ['config.file', "{{ prometheus_black_box_config__file }}"]
   - ['history.limit', "{{ prometheus_black_box_history__limit }}"]
+  - ['log.format', "{{ prometheus_black_box_log__format }}"]
   - ['log.level', "{{ prometheus_black_box_log__level }}"]
   - ['timeout-offset', "{{ prometheus_black_box_timeout_offset }}"]
+  - ['web.external-url', "{{ prometheus_black_box_web__external_url }}"]
   - ['web.listen-address', "{{ prometheus_black_box_web__listen_address }}"]
+  - ['web.route-prefix', "{{ prometheus_black_box_web__route_prefix }}"]
