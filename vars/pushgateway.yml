@@ -10,3 +10,4 @@ prometheus_push_gateway_service_config:
   - ['web.route-prefix', "{{ prometheus_push_gateway_web__route_prefix }}"]
   - ['web.telemetry-path', "{{ prometheus_push_gateway_web__telemetry_path }}"]
   - ['web.external-url', "{{ prometheus_push_gateway_web__external_url }}"]
+  - ['web.config.file', "{{ prometheus_push_gateway_web__config__file }}"]
