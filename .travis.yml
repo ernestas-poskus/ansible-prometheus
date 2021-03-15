@@ -55,9 +55,6 @@ script:
   # Test role.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml'
 
-  # Lint role.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm bash /etc/ansible/roles/role_under_test/lint /etc/ansible/roles/role_under_test'
-
   # View container logs
   - 'sudo docker logs "$(cat ${container_id})"'
 
