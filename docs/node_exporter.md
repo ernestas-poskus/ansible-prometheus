@@ -4,16 +4,24 @@
 # Node exporter
 # https://github.com/prometheus/node_exporter
 
+prometheus_collector__cpu__info__flags_include: "COLLECTOR.CPU.INFO.FLAGS-INCLUDE"
+# Filter the `flags` field in cpuInfo with a value that must be a regular expression
+prometheus_collector__cpu__info__bugs_include: "COLLECTOR.CPU.INFO.BUGS-INCLUDE"
+# Filter the `bugs` field in cpuInfo with a value that must be a regular expression
 prometheus_collector__diskstats__ignored_devices: "^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$"
 # Regexp of devices to ignore for diskstats.
 prometheus_collector__filesystem__ignored_fs_types: '^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$'
 # Regexp of filesystem types to ignore for filesystem collector.
+prometheus_collector__ipvs__backend_labels: "local_address,local_port,remote_address,remote_port,proto,local_mark"
+# Comma separated list for IPVS backend stats labels.
 prometheus_collector__netclass__ignored_devices: "^$"
 # Regexp of net devices to ignore for netclass collector.
 prometheus_collector__filesystem__ignored_mount_points: '^/(dev|proc|sys|var/lib/docker/.+)($|/)'
 # Regexp of mount points to ignore for filesystem
-prometheus_collector__netdev__ignored_devices: "^$"
-# Regexp of net devices to ignore for netdev
+prometheus_collector__netdev__device_include:
+# Regexp of net devices to include (mutually exclusive to device-exclude).
+prometheus_collector__netdev__device_exclude:
+# Regexp of net devices to exclude (mutually exclusive to device-include).
 prometheus_collector__netstat__fields: "^(.*_(InErrors|InErrs)|Ip_Forwarding|Ip(6|Ext)_(InOctets|OutOctets)|Icmp6?_(InMsgs|OutMsgs)|TcpExt_(Listen.*|Syncookies.*|TCPSynRetrans)|Tcp_(ActiveOpens|InSegs|OutSegs|PassiveOpens|RetransSegs|CurrEstab)|Udp6?_(InDatagrams|OutDatagrams|NoPorts))$"
 # Regexp of fields to return for netstat collector.
 prometheus_collector__ntp__protocol_version: 4
@@ -36,10 +44,10 @@ prometheus_collector__path__sysfs:
 # sysfs mountpoint. (default "/sys")
 prometheus_collector__path__rootfs: '/'
 # rootfs mountpoint.
-prometheus_collector__systemd__unit_blacklist: ".+\\.(automount|device|mount|scope|slice)"
-# Regexp of systemd units to blacklist. Units must both match whitelist and not match blacklist to be included.
-prometheus_collector__systemd__unit_whitelist: '.+'
-# Regexp of systemd units to whitelist. Units must both match whitelist and not match blacklist to be included. (default ".+")
+prometheus_collector__systemd__unit_include: ".+"
+# Regexp of systemd units to include. Units must both match include and not match exclude to be included.
+prometheus_collector__systemd__unit_exclude: ".+\\.(automount|device|mount|scope|slice)"
+# Regexp of systemd units to exclude. Units must both match include and not match exclude to be included.
 prometheus_collector__textfile__directory:
 # Directory to read text files with metrics from.
 prometheus_collector__vmstat__fields: "^(oom_kill|pgpg|pswp|pg.*fault).*"
@@ -48,12 +56,20 @@ prometheus_collector__log__format:
 # If set use a syslog logger or JSON logging. Example: logger:syslog?appname=bob&local=7 or logger:stdout?json=true. Defaults to stderr.
 prometheus_collector__web__max_requests: 40
 # Maximum number of parallel scrape requests. Use 0 to disable.
+prometheus_collector__web__config:
+# [EXPERIMENTAL] Path to config yaml file that can enable TLS or authentication.
 prometheus_collector__log__level: 'info'
 # Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal]. (default info)
 prometheus_collector__web__listen_address: ':9100'
 # Address on which to expose metrics and web interface. (default ":9100")
 prometheus_collector__web__telemetry_path: '/metrics'
 # Path under which to expose metrics. (default "/metrics")
+prometheus_collector__perf__cpus:
+# List of CPUs from which perf metrics should be collected
+prometheus_collector__perf__tracepoint: 'COLLECTOR.PERF.TRACEPOINT'
+# perf tracepoint that should be collected
+prometheus_collector__powersupply__ignored_supplies: "^$"
+# Regexp of power supplies to ignore for powersupplyclass collector.
 prometheus_collector__qdisc__fixtures:
 # Test fixtures to use for qdisc collector end-to-end testing
 prometheus_collector__wifi__fixtures:
