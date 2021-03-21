@@ -65,6 +65,9 @@ prometheus_blackbox_exporter_config_dir: "{{ prometheus_config_dir }}/blackboxex
 prometheus_version: '2.13.1'
 prometheus_platform_architecture: 'linux-amd64'
 
+# Number of open file allowed, value for LimitNOFILE
+prometheus_service_limitnofile: infinity
+
 # Node exporter
 prometheus_node_exporter_version: '1.1.2'
 
@@ -79,9 +82,6 @@ prometheus_snmp_exporter_version: '0.20.0'
 
 # Blackbox exporter
 prometheus_blackbox_exporter_version: '0.18.0'
-
-# Number of open file allowed, value for LimitNOFILE
-prometheus_service_limitnofile: infinity
 ```
 
 [DOCS: Prometheus variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/prometheus.md)
@@ -131,7 +131,7 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-Copyright (c) 2016, Ernestas Poskus
+Copyright (c) 2021, Ernestas Poskus
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
