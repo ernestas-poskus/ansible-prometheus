@@ -551,3 +551,6 @@ prometheus_black_box_log__level: 'info'
 
 prometheus_black_box_config_modules:
 # Blackbox modules config in format of YAML
+
+# Number of open file allowed, value for LimitNOFILE
+prometheus_service_limitnofile: infinity

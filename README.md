@@ -79,6 +79,9 @@ prometheus_snmp_exporter_version: '0.20.0'
 
 # Blackbox exporter
 prometheus_blackbox_exporter_version: '0.18.0'
+
+# Number of open file allowed, value for LimitNOFILE
+prometheus_service_limitnofile: infinity
 ```
 
 [DOCS: Prometheus variables](https://github.com/ernestas-poskus/ansible-prometheus/blob/master/docs/prometheus.md)
