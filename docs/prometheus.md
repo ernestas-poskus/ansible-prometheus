@@ -88,6 +88,9 @@ prometheus_web__route_prefix:
 prometheus_web__user_assets:
 # Path to static asset directory, available at /user.
 
+prometheus_web__config__file:
+# [EXPERIMENTAL] Path to configuration file that can enable TLS or authentication.
+
 prometheus_web__console__templates: 'consoles'
 # Path to the console template directory, available at /consoles.
 
@@ -114,9 +117,6 @@ prometheus_storage__tsdb__retention__time: "{{ prometheus_storage__tsdb__retenti
 
 prometheus_alertmanager__notification_queue_capacity: 10000
 # The capacity of the queue for pending alert manager notifications.
-
-prometheus_alertmanager__timeout: '10s'
-# Alert manager HTTP API timeout.
 
 prometheus_query__lookback_delta: '5m'
 # The delta difference allowed for retrieving metrics during expression evaluations.
@@ -170,6 +170,11 @@ prometheus_query__max_samples: 50000000
 prometheus_log__level: 'info'
 # Only log messages with the given severity or above. Valid levels:
 # [debug, info, warn, error, fatal].
+
+prometheus_enable__features:
+# Comma separated feature names to enable. Valid options: 'promql-at-modifier'
+# to enable the @ modifier, 'remote-write-receiver' to enable remote write receiver.
+# See https://prometheus.io/docs/prometheus/latest/disabled_features/ for more details.
 
 # Prometheus flags
 prometheus____enabled_flags: []

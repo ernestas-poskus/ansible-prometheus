@@ -21,7 +21,7 @@
     owner: "{{ prometheus_owner }}"
     group: "{{ prometheus_group }}"
     copy: no
-    creates: "{{ prometheus_install_dir }}/{{ prometheus_archive }}"
+    creates: "{{ prometheus_working_dir }}"
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Copy Prometheus config
@@ -30,7 +30,7 @@
     dest: "{{ prometheus_config_dir }}/prometheus.yml"
     owner: "{{ prometheus_owner }}"
     group: "{{ prometheus_group }}"
-    validate: "{{ prometheus_install_dir }}/{{ prometheus_archive }}/promtool check config %s"
+    validate: "{{ prometheus_working_dir }}/promtool check config %s"
   notify:
     restart prometheus
 
@@ -40,7 +40,7 @@
     dest: "{{ prometheus_rules_dir }}/{{ item.name }}.rules.yml"
     owner: "{{ prometheus_owner }}"
     group: "{{ prometheus_group }}"
-    validate: "{{ prometheus_install_dir }}/{{ prometheus_archive }}/promtool check rules %s"
+    validate: "{{ prometheus_working_dir }}/promtool check rules %s"
   with_items: "{{ prometheus_rules }}"
   when: prometheus_rules | length > 0
   notify:

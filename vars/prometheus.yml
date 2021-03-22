@@ -3,7 +3,6 @@
 ############################################################
 prometheus_service_config:
   - ['alertmanager.notification-queue-capacity', "{{ prometheus_alertmanager__notification_queue_capacity }}"]
-  - ['alertmanager.timeout', "{{ prometheus_alertmanager__timeout }}"]
   - ['config.file', "{{ prometheus_config__file }}"]
   - ['log.format', "{{ prometheus_log__format }}"]
   - ['log.level', "{{ prometheus_log__level }}"]
@@ -31,3 +30,5 @@ prometheus_service_config:
   - ['web.read-timeout', "{{ prometheus_web__read_timeout }}"]
   - ['web.route-prefix', "{{ prometheus_web__route_prefix }}"]
   - ['web.user-assets', "{{ prometheus_web__user_assets }}"]
+  - ['storage.tsdb.retention', "{{ prometheus_storage__tsdb__retention }}"]
+  - ['web.config.file', "{{ prometheus_web__config__file }}"]
